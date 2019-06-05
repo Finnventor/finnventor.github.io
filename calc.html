@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+	<title>Finnventor - Calculator</title>
+	<link rel="shortcut icon" href="./favicon.png">
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<script defer src="https://unpkg.com/mathjs@5.1.2/dist/math.min.js"></script>
+	<script defer src="main.js"></script>
+  <script defer src="calc.js"></script>
+
+	<link rel="stylesheet" href="/main.css">
+	<link rel="stylesheet" href="/calc.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css" />
+</head>
+
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<header class="mdl-layout__header mdl-layout__header--fixed mdl-color--grey-700">
+			<div class="mdl-layout__header-row">
+				<span class="mdl-layout-title"><a href="/" style="color: white; text-decoration: none;">Finnventor</a>
+                    </span></span>
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="/">Home</a>
+        <a class="mdl-navigation__link" href="/python.html">Python</a>
+        <a class="mdl-navigation__link" href="#calc">Calculator</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Finnventor</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/">Home</a>
+      <a class="mdl-navigation__link" href="/python.html">Python</a>
+      <a class="mdl-navigation__link" href="#calc">Calculator</a>
+    </nav>
+    <br/>
+    <br/>
+    <span class="mdl-layout-title">Calculator</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="#help">Help</a>
+    </nav>
+    <div style="margin:20px">
+      <h5>Options</h5>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+        <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked
+        onclick='config("BigNumber")'>
+        <span class="mdl-radio__label">BigNumber</span>
+      </label> <br/>
+
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+        <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2"
+        onclick='config("number")'>
+        <span class="mdl-radio__label">Float</span>
+      </label> <br/>
+
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+        <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3"
+        onclick='config("Fraction")'>
+        <span class="mdl-radio__label">Fraction</span>
+      </label> <br/>
+
+      <br/>
+
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="aoption-1">
+        <input type="radio" id="aoption-1" class="mdl-radio__button" name="aoptions" value="1"
+        onclick='angleconfig("deg");'>
+        <span class="mdl-radio__label">Degrees</span>
+      </label> <br/>
+
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="aoption-2">
+        <input type="radio" id="aoption-2" class="mdl-radio__button" name="aoptions" value="2" checked
+        onclick='angleconfig("rad");'>
+        <span class="mdl-radio__label">Radians</span>
+      </label> <br/>
+
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="aoption-3">
+        <input type="radio" id="aoption-3" class="mdl-radio__button" name="aoptions" value="3"
+        onclick='angleconfig("grad");'>
+        <span class="mdl-radio__label">Gradians</span>
+      </label> <br/>
+      <br/>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" id="usecookies">
+        <input type="checkbox" class="mdl-checkbox__input" onclick="setusecookies()">
+        <span class="mdl-checkbox__label">Use Cookies</span>
+      </label>
+    </div>
+  </div>
+  <main class="mdl-layout__content">
+    <section class="page-content" id="calc">
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item" id="left_paren" class="paren"></div>
+      <div class="grid-item" style="min-width: 150px">
+        <input type="text" id="finnventorcalc" oninput="calc(this)" size="50"></input>
+      </div>
+      <div class="grid-item" id="right_paren" class="paren"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item" id="output"></div>
+      <div class="grid-item"></div>
+    </section>
+    
+    <section class="page-content" id="help">
+      <div class="center">
+        <h2 class="mdl-color-text--deep-orange">Help</h2>To use the calculator, simply type in the box provided. No need to press enter, answers will be displayed automatically below the input field. If the input field is underlined in red, the calculator can't understand your query. Try a simpler one.<h4 class="mdl-color-text--deep-orange">Examples</h4><u>2 + 2</u><br/>4<br/><br/><u>sin(0.5pi)</u><br/>1<br/><br/><u>10 A * 30 V * 1 day in kWh</u><br/>7.2 kWh<br/><br/><u>x = sqrt(-18/2)</u><br/>3i<br/><br/><u>5x + 4</u><br/>4 + 15i<br/><br/><h4 class="mdl-color-text--deep-orange">Tips</h4> When enter is pressed, the field is cleared but the answer remains. It can also be accessed using the variable <b>ans</b>. Note that if <b>x = 10</b> is in the input field and the field is cleared using backspace instead of enter, the calculator will see <b>x = 10</b> and then <b>x = 1</b>, resulting in the variable being set as 1 instead of 10.
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

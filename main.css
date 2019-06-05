@@ -1,0 +1,14 @@
+.hidden {
+  display: none;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+section {
+  width: 100%;
+  height: 100%;
+}

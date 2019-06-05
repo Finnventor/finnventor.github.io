@@ -1,0 +1,28 @@
+.card-container {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.mdl-card {
+  margin: 5px;
+  height: 300px;
+}
+
+.mdl-card > .mdl-card__title {
+  align-items: flex-start;
+}
+
+.card-calc > .mdl-card__title {
+  background: url('images/calculator.jpg') center / cover;
+}
+
+.card-py > .mdl-card__title {
+  background: url('images/python.png') center / cover;
+}
+
+.mdl-card > .mdl-card__title > h4 {
+  margin-top: 0;
+}
