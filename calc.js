@@ -47,13 +47,17 @@ input.addEventListener("keyup", function(event) {
   }
 });
 
-function config(number) {
-  dict = {number: number};
+var nconfig = {}
 
-  if (number === "BigNumber") dict["precision"] = 35;
+function numconfig(number) {
+  nconfig = {number: number};
+
+  if (number === "BigNumber") nconfig["precision"] = 35;
   
-  math.config(dict);
+  math.config(nconfig);
   calc(input);
+
+  if (usecookies) setCookie("numbertype", number, 999)
 }
 
 const aconfig = {
@@ -63,22 +67,36 @@ const aconfig = {
 function angleconfig(angles) {
   aconfig.angles = angles;
   calc(input);
+
+  if (usecookies) setCookie("angletype", angles, 999)
 }
 
 function setusecookies() {
   usecookies = document.getElementById("usecookies").children[0].checked;
   console.log(usecookies)
   if (usecookies) {
-    setCookie("usecookies", "true", 999); 
+    setCookie("usecookies", "true", 999);
+    setCookie("numbertype", nconfig.number, 999);
+    setCookie("angletype", aconfig.angles, 999)
   } else {
     delCookie("usecookies");
+    delCookie("numbertype");
+    delCookie("angletype");
   }
 }
 
 window.onload = function() {
   parser = math.parser();
-  config("BigNumber");
+  numconfig("BigNumber");
 
-  if (getCookie("usecookies") === "true") document.getElementById("usecookies").MaterialCheckbox.check();
+  if (getCookie("usecookies") === "true") {
+    document.getElementById("usecookies").MaterialCheckbox.check();
+    usecookies = true;
+
+    var c = getCookie("numbertype")
+    if (c) document.getElementById("option-"+c).parentElement.MaterialRadio.check()
+    var c = getCookie("angletype")
+    if (c) document.getElementById("option-"+c).parentElement.MaterialRadio.check()
+  }
 
   let replacements={};const fns1=['sin','cos','tan','sec','cot','csc'];fns1.forEach(function(name){const fn=math[name];const fnNumber=function(x){switch(aconfig.angles){case'deg':return fn(math.eval(x+'/360*2*pi'));case'grad':return fn(math.eval(x+'/400*2*pi'));default:return fn(x);}};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});const fns2=['asin','acos','atan','atan2','acot','acsc','asec'];fns2.forEach(function(name){const fn=math[name];const fnNumber=function(x){const result=fn(x);if(typeof result==='number'){switch(aconfig.angles){case'deg':return result/2/math.pi*360;case'grad':return result/2/math.pi*400;default:return result;}} return result;};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});math.import(replacements,{override:true});};

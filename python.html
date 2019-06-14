@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
 
 <head>
-	<title>Finnventor - Python</title>
-	<link rel="shortcut icon" href="./favicon.png">
-	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finnventor - Python</title>
+  <link rel="shortcut icon" href="./favicon.png">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script defer src="/python.js"></script>
 
-	<link rel="stylesheet" href="/index.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css" />
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/python.css">
 </head>
 
 <body>
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-		<header class="mdl-layout__header mdl-layout__header--fixed mdl-color--grey-700">
-			<div class="mdl-layout__header-row">
-				<span class="mdl-layout-title"><a href="/" style="color: white; text-decoration: none;">Finnventor</a></span>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header mdl-layout__header--fixed mdl-color--grey-700">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title"><a href="/" style="color: white; text-decoration: none;">Finnventor</a></span>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="/">Home</a>
@@ -26,6 +29,7 @@
       </nav>
     </div>
   </header>
+
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Finnventor</span>
     <nav class="mdl-navigation">
@@ -34,11 +38,67 @@
       <a class="mdl-navigation__link" href="/calc.html">Calculator</a>
     </nav>
   </div>
+
   <main class="mdl-layout__content">
     <section class="page-content">
+      <div class="card-container">
 
+        <div class="card mdl-shadow--2dp" id="plopy">
+          <div class="card__top">
+            <div class="mdl-card">
+              <div class="mdl-card__title">
+                <h4>plopy</h4>
+              </div>
+              <div class="mdl-card__supporting-text">
+                A program for making high-quality data plotting with <a href="https://matplotlib.org" target="_blank">matplotlib</a> easily customizable with a GUI.
+                You can also import it from a python script and choose files or arrays to add before starting the GUI.
+                This <a href="https://raw.githubusercontent.com/Finnventor/plopy/master/test-data.txt" download>test data</a> file was used to generate the <a href="/images/plopy-demo-plot.png" target="_blank">plot</a> on the right.
+              </div>
+              
+              <div class="mdl-card__menu">
+                <a href="https://pypi.org/project/plopy/" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" target="_blank">
+                  <img class="icon" src="/images/pypi.png">
+                <a href="https://github.com/Finnventor/plopy" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" target="_blank">
+                  <img class="icon" src="/images/github.png">
+                </a>
+                </a>
+              </div>
+            </div>
+            <a href="/images/plopy-demo-plot.png" target="_blank"><img class="demo" src="/images/plopy.png" title="The GUI plotting test-data.txt"></a>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <button onclick="pipdialog('plopy')" class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect">Install with pip</button>
+            <a href="https://raw.githubusercontent.com/Finnventor/plopy/master/__init__.py" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" download="plo.py" target="_blank">Download Standalone</a>
+            <a href="https://repl.it/@Finnventor/import-plopy-demo?lite=true" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" target="_blank">Try it Online</a>
+          </div>
+        </div>
+
+      </div>
     </section>
   </main>
+</div>
+
+<dialog class="mdl-dialog" id="pip-dialog">
+  <div class="copy-text">
+    <input type="text" id="pip-command" value="pip install ..." size="10" readonly>
+    <button onclick="this.previousElementSibling.select();document.execCommand('copy')">Copy</button>
+  </div>
+  <div class="mdl-dialog__content">
+    <p>
+      Paste the above command into a terminal/command prompt to install.
+      To open a terminal/command prompt:
+      <ul>
+        <li>Windows: Search <i>cmd</i> in Start Menu, then choose Command Prompt</li>
+        <li>Mac: Go to Applications > Utilities > Terminal</li>
+        <li>Linux: You know how to and don't need these instructions</li>
+      </ul>
+    </p>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button type="button" class="mdl-button close" onclick="this.parentElement.parentElement.close()">Close</button>
+  </div>
+</dialog>
+
 </body>
 
 </html>

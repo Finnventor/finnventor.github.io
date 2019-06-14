@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-	<title>Finnventor - Calculator</title>
-	<link rel="shortcut icon" href="./favicon.png">
-	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-	<script defer src="https://unpkg.com/mathjs@5.1.2/dist/math.min.js"></script>
-	<script defer src="main.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Finnventor - Calculator</title>
+  <link rel="shortcut icon" href="./favicon.png">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script defer src="https://unpkg.com/mathjs@5.1.2/dist/math.min.js"></script>
+  <script defer src="main.js"></script>
   <script defer src="calc.js"></script>
 
-	<link rel="stylesheet" href="/main.css">
-	<link rel="stylesheet" href="/calc.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css" />
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/calc.css">
 </head>
 
 <body>
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-		<header class="mdl-layout__header mdl-layout__header--fixed mdl-color--grey-700">
-			<div class="mdl-layout__header-row">
-				<span class="mdl-layout-title"><a href="/" style="color: white; text-decoration: none;">Finnventor</a>
-                    </span></span>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header mdl-layout__header--fixed mdl-color--grey-700">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title"><a href="/" style="color: white; text-decoration: none;">Finnventor</a></span>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="/">Home</a>
@@ -46,40 +46,40 @@
     </nav>
     <div style="margin:20px">
       <h5>Options</h5>
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-        <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked
-        onclick='config("BigNumber")'>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-BigNumber">
+        <input type="radio" id="option-BigNumber" class="mdl-radio__button" name="options" value="1" checked
+        onclick='numconfig("BigNumber")'>
         <span class="mdl-radio__label">BigNumber</span>
       </label> <br/>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-        <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2"
-        onclick='config("number")'>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-number">
+        <input type="radio" id="option-number" class="mdl-radio__button" name="options" value="2"
+        onclick='numconfig("number")'>
         <span class="mdl-radio__label">Float</span>
       </label> <br/>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-        <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3"
-        onclick='config("Fraction")'>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-Fraction">
+        <input type="radio" id="option-Fraction" class="mdl-radio__button" name="options" value="3"
+        onclick='numconfig("Fraction")'>
         <span class="mdl-radio__label">Fraction</span>
       </label> <br/>
 
       <br/>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="aoption-1">
-        <input type="radio" id="aoption-1" class="mdl-radio__button" name="aoptions" value="1"
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-deg">
+        <input type="radio" id="option-deg" class="mdl-radio__button" name="aoptions" value="1"
         onclick='angleconfig("deg");'>
         <span class="mdl-radio__label">Degrees</span>
       </label> <br/>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="aoption-2">
-        <input type="radio" id="aoption-2" class="mdl-radio__button" name="aoptions" value="2" checked
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-rad">
+        <input type="radio" id="option-rad" class="mdl-radio__button" name="aoptions" value="2" checked
         onclick='angleconfig("rad");'>
         <span class="mdl-radio__label">Radians</span>
       </label> <br/>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="aoption-3">
-        <input type="radio" id="aoption-3" class="mdl-radio__button" name="aoptions" value="3"
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-grad">
+        <input type="radio" id="option-grad" class="mdl-radio__button" name="aoptions" value="3"
         onclick='angleconfig("grad");'>
         <span class="mdl-radio__label">Gradians</span>
       </label> <br/>
@@ -95,11 +95,11 @@
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
-      <div class="grid-item" id="left_paren" class="paren"></div>
+      <div class="grid-item paren" id="left_paren"></div>
       <div class="grid-item" style="min-width: 150px">
-        <input type="text" id="finnventorcalc" oninput="calc(this)" size="50"></input>
+        <input type="text" id="finnventorcalc" oninput="calc(this)" size="50">
       </div>
-      <div class="grid-item" id="right_paren" class="paren"></div>
+      <div class="grid-item paren" id="right_paren"></div>
       <div class="grid-item"></div>
       <div class="grid-item" id="output"></div>
       <div class="grid-item"></div>
@@ -111,6 +111,7 @@
       </div>
     </section>
   </main>
+</div>
 </body>
 
 </html>

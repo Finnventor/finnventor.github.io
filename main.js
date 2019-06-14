@@ -9,7 +9,7 @@ function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
+  for(var i = 0; i < ca.length; i++) {
     var c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -21,8 +21,6 @@ function getCookie(cname) {
   return "";
 }
 
-function delCookie(name) {   
-  var d = new Date();
-  d.setSeconds(d.getSeconds() + 1)
-  document.cookie = name+"=;expires="+d.toUTCString();;  
+function delCookie(name) {
+  document.cookie = name+'=;Max-Age=0;';
 }
