@@ -6,16 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Finnventor - Calculator</title>
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="shortcut icon" href="./favicon.png">
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script defer src="https://unpkg.com/mathjs@5.1.2/dist/math.min.js"></script>
-  <script defer src="main.js"></script>
-  <script defer src="calc.js"></script>
+  <script defer src="/resources/main.js"></script>
+  <script defer src="/resources/calc.js"></script>
 
+  <link rel="canonical" href="https://finnventor.github.io/calc/">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css" />
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="calc.css">
+  <link rel="stylesheet" href="/resources/main.css">
+  <link rel="stylesheet" href="/resources/calc.css">
 </head>
 
 <body>
@@ -26,7 +27,7 @@
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="/">Home</a>
-        <a class="mdl-navigation__link" href="/python.html">Python</a>
+        <a class="mdl-navigation__link" href="/python/">Python</a>
         <a class="mdl-navigation__link" href="#calc">Calculator</a>
       </nav>
     </div>
@@ -35,7 +36,7 @@
     <span class="mdl-layout-title">Finnventor</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="/">Home</a>
-      <a class="mdl-navigation__link" href="/python.html">Python</a>
+      <a class="mdl-navigation__link" href="/python/">Python</a>
       <a class="mdl-navigation__link" href="#calc">Calculator</a>
     </nav>
     <br/>
@@ -97,7 +98,6 @@
       <div class="grid-item"></div>
       <div class="grid-item paren" id="left_paren"></div>
       <div class="grid-item" style="min-width: 150px">
-        <noscript class="mdl-color-text--primary">Error: This calculator requires JavaScript.</noscript>
         <input type="text" id="finnventorcalc" oninput="calc(this)" size="50">
       </div>
       <div class="grid-item paren" id="right_paren"></div>
@@ -105,12 +105,24 @@
       <div class="grid-item" id="output"></div>
       <div class="grid-item"></div>
     </section>
-
+    
     <section class="page-content" id="help">
       <div class="center">
-        <h2 class="mdl-color-text--primary">Help</h2>To use the calculator, simply type in the box provided. No need to press enter, answers will be displayed automatically below the input field. If the input field is underlined in red, the calculator can't understand your query. Try a simpler one.<h4 class="mdl-color-text--primary">Examples</h4><u>2 + 2</u><br/>4<br/><br/><u>sin(0.5pi)</u><br/>1<br/><br/><u>10 A * 30 V * 1 day in kWh</u><br/>7.2 kWh<br/><br/><u>x = sqrt(-18/2)</u><br/>3i<br/><br/><u>5x + 4</u><br/>4 + 15i<br/><br/><h4 class="mdl-color-text--deep-orange">Tips</h4> When enter is pressed, the field is cleared but the answer remains. It can also be accessed using the variable <b>ans</b>. Note that if <b>x = 10</b> is in the input field and the field is cleared using backspace instead of enter, the calculator will see <b>x = 10</b> and then <b>x = 1</b>, resulting in the variable being set as 1 instead of 10.
+        <h2 class="mdl-color-text--deep-orange">Help</h2>To use the calculator, simply type in the box provided. No need to press enter, answers will be displayed automatically below the input field. If the input field is underlined in red, the calculator can't understand your query. Try a simpler one.<h4 class="mdl-color-text--deep-orange">Examples</h4><u>2 + 2</u><br/>4<br/><br/><u>sin(0.5pi)</u><br/>1<br/><br/><u>10 A * 30 V * 1 day in kWh</u><br/>7.2 kWh<br/><br/><u>x = sqrt(-18/2)</u><br/>3i<br/><br/><u>5x + 4</u><br/>4 + 15i<br/><br/><h4 class="mdl-color-text--deep-orange">Tips</h4> When enter is pressed, the field is cleared but the answer remains. It can also be accessed using the variable <b>ans</b>. Note that if <b>x = 10</b> is in the input field and the field is cleared using backspace instead of enter, the calculator will see <b>x = 10</b> and then <b>x = 1</b>, resulting in the variable being set as 1 instead of 10.
       </div>
     </section>
+
+    <footer class="mdl-mini-footer">
+      <div class="mdl-mini-footer__left-section">
+        <div class="mdl-logo">Finnventor</div>
+        <ul class="mdl-mini-footer__link-list">
+          <li>by Finn Reichertz</li>
+          <li><a href="https://forms.gle/GDXEJYnqP9J4odwe7" rel="noopener noreferrer" target="_blank">Feedback</a></li>
+          <li><a href="https://github.com/Finnventor" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+    </footer>
+
   </main>
 </div>
 </body>

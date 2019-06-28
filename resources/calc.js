@@ -19,18 +19,18 @@ function calc(x) {
     try {
       var out = parser.eval(left_paren.innerHTML+x.value+right_paren.innerHTML).toString();
       if (out.length > 99) {
-        console.log(out)
+        console.debug(out)
         out = "Function"
       }
       input.className = "";
       output.innerHTML = out;
     } catch (e) {
       input.className = "error";
-      console.log(e);
+      console.debug(e);
       try {
         output.innerHTML = math.simplify(left_paren.innerHTML+x.value+right_paren.innerHTML).toString();
       } catch (e) {
-        console.log(e)
+        console.debug(e)
       }
     }
   }
@@ -73,7 +73,7 @@ function angleconfig(angles) {
 
 function setusecookies() {
   usecookies = document.getElementById("usecookies").children[0].checked;
-  console.log(usecookies)
+  console.debug("usecookies: %s", usecookies)
   if (usecookies) {
     setCookie("usecookies", "true", 999);
     setCookie("numbertype", nconfig.number, 999);

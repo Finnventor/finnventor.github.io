@@ -8,9 +8,9 @@
 }
 
 #calc > .mdl-card__title {
-  background: url('images/calculator.jpg') center / cover;
+  background: url('/images/calculator.jpg') center / cover;
 }
 
 #python > .mdl-card__title {
-  background: url('images/python.png') center / cover;
+  background: url('/images/python.png') center / cover;
 }

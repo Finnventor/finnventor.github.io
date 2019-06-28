@@ -5,14 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finnventor - Python</title>
-  <link rel="shortcut icon" href="./favicon.png">
+  <link rel="shortcut icon" href="/favicon.png">
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <script defer src="/python.js"></script>
+  <script defer src="/resources/python.js"></script>
 
+  <link rel="canonical" href="https://finnventor.github.io/python/">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css" />
-  <link rel="stylesheet" href="/main.css">
-  <link rel="stylesheet" href="/python.css">
+  <link rel="stylesheet" href="/resources/main.css">
+  <link rel="stylesheet" href="/resources/python.css">
 </head>
 
 <body>
@@ -24,8 +25,8 @@
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="/">Home</a>
-        <a class="mdl-navigation__link" href="/python.html">Python</a>
-        <a class="mdl-navigation__link" href="/calc.html">Calculator</a>
+        <a class="mdl-navigation__link" href="/python/">Python</a>
+        <a class="mdl-navigation__link" href="/calc/">Calculator</a>
       </nav>
     </div>
   </header>
@@ -34,8 +35,8 @@
     <span class="mdl-layout-title">Finnventor</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="/">Home</a>
-      <a class="mdl-navigation__link" href="/python.html">Python</a>
-      <a class="mdl-navigation__link" href="/calc.html">Calculator</a>
+      <a class="mdl-navigation__link" href="/python/">Python</a>
+      <a class="mdl-navigation__link" href="/calc/">Calculator</a>
     </nav>
   </div>
 
@@ -50,16 +51,16 @@
                 <h4>plopy</h4>
               </div>
               <div class="mdl-card__supporting-text">
-                A program for making high-quality data plotting with <a href="https://matplotlib.org" target="_blank">matplotlib</a> easily customizable with a GUI.
+                A program for making high-quality data plotting with <a href="https://matplotlib.org" rel="noopener noreferrer" target="_blank">matplotlib</a> easily customizable with a GUI.
                 You can also import it from a python script and choose files or arrays to add before starting the GUI.
                 This <a href="https://raw.githubusercontent.com/Finnventor/plopy/master/test-data.txt" download>test data</a> file was used to generate the <a href="/images/plopy-demo-plot.png" target="_blank">plot</a> on the right.
               </div>
               
               <div class="mdl-card__menu">
-                <a href="https://pypi.org/project/plopy/" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" target="_blank">
-                  <img class="icon" src="/images/pypi.png">
-                <a href="https://github.com/Finnventor/plopy" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" target="_blank">
-                  <img class="icon" src="/images/github.png">
+                <a href="https://pypi.org/project/plopy/" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" rel="noopener noreferrer" target="_blank">
+                  <img class="icon" src="/images/pypi.png" alt="PyPI">
+                <a href="https://github.com/Finnventor/plopy" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" rel="noopener noreferrer" target="_blank">
+                  <img class="icon" src="/images/github.png" alt="GitHub">
                 </a>
                 </a>
               </div>
@@ -68,13 +69,25 @@
           </div>
           <div class="mdl-card__actions mdl-card--border">
             <button onclick="pipdialog('plopy')" class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect">Install with pip</button>
-            <a href="https://raw.githubusercontent.com/Finnventor/plopy/master/__init__.py" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" download="plo.py" target="_blank">Download Standalone</a>
-            <a href="https://repl.it/@Finnventor/import-plopy-demo?lite=true" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" target="_blank">Try it Online</a>
+            <a href="https://raw.githubusercontent.com/Finnventor/plopy/master/__init__.py" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" download="plo.py"  rel="noopener noreferrer" target="_blank">Download Standalone</a>
+            <a href="https://repl.it/@Finnventor/import-plopy-demo?lite=true" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" rel="noopener noreferrer" target="_blank">Try it Online</a>
           </div>
         </div>
 
       </div>
     </section>
+
+    <footer class="mdl-mini-footer">
+      <div class="mdl-mini-footer__left-section">
+        <div class="mdl-logo">Finnventor</div>
+        <ul class="mdl-mini-footer__link-list">
+          <li>by Finn Reichertz</li>
+          <li><a href="https://forms.gle/GDXEJYnqP9J4odwe7" rel="noopener noreferrer" target="_blank">Feedback</a></li>
+          <li><a href="https://github.com/Finnventor" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+    </footer>
+
   </main>
 </div>
 

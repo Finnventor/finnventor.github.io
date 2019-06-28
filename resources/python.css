@@ -2,17 +2,6 @@ div.card {
   margin: 10px;
 }
 
-div.mdl-card {
-}
-
-/*
-.mdlm-card {
-  margin: 10px;
-  height: auto;
-  display: flex;
-  flex: wrap;
-}
-*/
 .card__top {
   display: flex;
   flex-wrap: wrap;
