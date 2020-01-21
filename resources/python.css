@@ -1,11 +1,14 @@
 div.card {
   margin: 10px;
+  display: flex;
+  flex-flow: column;
 }
 
 .card__top {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
+  flex-grow: 1;
 }
 
 .mdl-card__actions {
