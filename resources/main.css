@@ -28,3 +28,12 @@ h4 {
   justify-content: center;
   padding:10px;
 }
+
+.card:before {
+  content: '';
+  display: block;
+  position: relative;
+  width: 0;
+  height: 20px;
+  margin-top: -20px}
+}
