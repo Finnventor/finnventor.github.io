@@ -29,8 +29,7 @@ h4 {
   padding:10px;
 }
 
-.card:before {
-  content: '';
+.anchor {
   display: block;
   position: relative;
   width: 0;
