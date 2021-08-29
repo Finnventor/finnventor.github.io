@@ -53,7 +53,7 @@ function numconfig(number) {
   nconfig = {number: number};
 
   if (number === "BigNumber") nconfig["precision"] = 35;
-  
+
   math.config(nconfig);
   calc(input);
 
@@ -87,7 +87,7 @@ function setusecookies() {
 
 window.onload = function() {
   parser = math.parser();
-  numconfig("BigNumber");
+  numconfig("number");
 
   if (getCookie("usecookies") === "true") {
     document.getElementById("usecookies").MaterialCheckbox.check();

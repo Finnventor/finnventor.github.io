@@ -7,7 +7,7 @@
 
   <title>Finnventor - Calculator</title>
   <meta name="description" content="An online calculator that supports variables, functions, and units.">
-  
+
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -56,13 +56,13 @@
     <div style="margin:20px">
       <h5>Options</h5>
       <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-BigNumber">
-        <input type="radio" id="option-BigNumber" class="mdl-radio__button" name="options" value="1" checked
+        <input type="radio" id="option-BigNumber" class="mdl-radio__button" name="options" value="1"
         onclick='numconfig("BigNumber")'>
         <span class="mdl-radio__label">BigNumber</span>
       </label> <br/>
 
       <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-number">
-        <input type="radio" id="option-number" class="mdl-radio__button" name="options" value="2"
+        <input type="radio" id="option-number" class="mdl-radio__button" name="options" value="2" checked
         onclick='numconfig("number")'>
         <span class="mdl-radio__label">Float</span>
       </label> <br/>
@@ -113,7 +113,7 @@
       <div class="grid-item" id="output"></div>
       <div class="grid-item"></div>
     </section>
-    
+
     <section class="page-content" id="help">
       <div class="center">
         <h2 class="mdl-color-text--deep-orange">Help</h2>To use the calculator, simply type in the box provided. No need to press enter, answers will be displayed automatically below the input field. If the input field is underlined in red, the calculator can't understand your query. Try a simpler one.<h4 class="mdl-color-text--deep-orange">Examples</h4><u>2 + 2</u><br/>4<br/><br/><u>sin(0.5pi)</u><br/>1<br/><br/><u>10 A * 30 V * 1 day in kWh</u><br/>7.2 kWh<br/><br/><u>x = sqrt(-18/2)</u><br/>3i<br/><br/><u>5x + 4</u><br/>4 + 15i<br/><br/><h4 class="mdl-color-text--deep-orange">Tips</h4> When enter is pressed, the field is cleared but the answer remains. It can also be accessed using the variable <b>ans</b>. Note that if <b>x = 10</b> is in the input field and the field is cleared using backspace instead of enter, the calculator will see <b>x = 10</b> and then <b>x = 1</b>, resulting in the variable being set as 1 instead of 10.
