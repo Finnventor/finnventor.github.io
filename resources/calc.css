@@ -52,3 +52,7 @@
 #left_paren {
   text-align: right;
 }
+
+#help a {
+    color: inherit;
+}
