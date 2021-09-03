@@ -14,3 +14,7 @@
 #python > .mdl-card__title {
   background: url('/images/python.png') center / cover;
 }
+
+.white-shadow {
+  text-shadow: 0 0 20px white, 0 0 15px white, 0 0 10px white;
+}
