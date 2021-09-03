@@ -26,7 +26,7 @@ h4 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding:10px;
+  padding: 10px;
 }
 
 .anchor {
@@ -34,5 +34,5 @@ h4 {
   position: relative;
   width: 0;
   height: 20px;
-  margin-top: -20px}
+  margin-top: -20px;
 }
