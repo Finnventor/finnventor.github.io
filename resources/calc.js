@@ -103,10 +103,11 @@ window.onload = function() {
 
   let replacements={};const fns1=['sin','cos','tan','sec','cot','csc'];fns1.forEach(function(name){const fn=math[name];const fnNumber=function(x){switch(aconfig.angles){case'deg':return fn(math.eval(x+'/360*2*pi'));case'grad':return fn(math.eval(x+'/400*2*pi'));default:return fn(x);}};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});const fns2=['asin','acos','atan','atan2','acot','acsc','asec'];fns2.forEach(function(name){const fn=math[name];const fnNumber=function(x){const result=fn(x);if(typeof result==='number'){switch(aconfig.angles){case'deg':return result/2/math.pi*360;case'grad':return result/2/math.pi*400;default:return result;}} return result;};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});math.import(replacements,{override:true});
 
-  //var urlParams = new URLSearchParams(window.location.search)
-  var query = window.location.search.match(/[?&]q=([^&]+)/)[1]
-  if (query) {
-    input.value = decodeURI(query)
-    calc(input)
+  if (window.location.search) {
+    var query = window.location.search.match(/[?&]q=([^&]+)/)[1]
+    if (query) {
+        input.value = decodeURI(query)
+        calc(input)
+    }
   }
 };
