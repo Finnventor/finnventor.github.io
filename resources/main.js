@@ -22,5 +22,5 @@ function getCookie(cname) {
 }
 
 function delCookie(name) {
-  document.cookie = name+'=;Max-Age=0;';
+  document.cookie = name+'=;Max-Age=1;path=/';
 }

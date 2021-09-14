@@ -82,6 +82,7 @@ function setusecookies() {
     delCookie("usecookies");
     delCookie("numbertype");
     delCookie("angletype");
+    delCookie("query");
   }
 }
 
@@ -99,6 +100,7 @@ window.onload = function() {
     if (c) document.getElementById("option-"+c).parentElement.MaterialRadio.check()
     var c = getCookie("angletype")
     if (c) document.getElementById("option-"+c).parentElement.MaterialRadio.check()
+    input.value = getCookie("query")
   }
 
   let replacements={};const fns1=['sin','cos','tan','sec','cot','csc'];fns1.forEach(function(name){const fn=math[name];const fnNumber=function(x){switch(aconfig.angles){case'deg':return fn(math.eval(x+'/360*2*pi'));case'grad':return fn(math.eval(x+'/400*2*pi'));default:return fn(x);}};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});const fns2=['asin','acos','atan','atan2','acot','acsc','asec'];fns2.forEach(function(name){const fn=math[name];const fnNumber=function(x){const result=fn(x);if(typeof result==='number'){switch(aconfig.angles){case'deg':return result/2/math.pi*360;case'grad':return result/2/math.pi*400;default:return result;}} return result;};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});math.import(replacements,{override:true});
@@ -106,8 +108,14 @@ window.onload = function() {
   if (window.location.search) {
     var query = window.location.search.match(/[?&]q=([^&]+)/)[1]
     if (query) {
-        input.value = decodeURI(query)
-        calc(input)
+      input.value = decodeURI(query)
+    }
+  }
+  calc(input)
+
+  window.onbeforeunload = function() {
+    if (input.value && document.getElementById("usecookies").children[0].checked) {
+      setCookie("query", input.value, 99)
     }
   }
 };
