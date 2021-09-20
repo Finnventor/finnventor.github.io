@@ -1,4 +1,5 @@
 const input = document.getElementById("finnventorcalc");
+input.focus();
 const output = document.getElementById("output");
 const left_paren = document.getElementById("left_paren");
 const right_paren = document.getElementById("right_paren");
