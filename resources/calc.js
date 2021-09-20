@@ -99,7 +99,10 @@ window.onload = function() {
     var c = getCookie("numbertype")
     if (c) document.getElementById("option-"+c).parentElement.MaterialRadio.check()
     var c = getCookie("angletype")
-    if (c) document.getElementById("option-"+c).parentElement.MaterialRadio.check()
+    if (c) {
+      document.getElementById("option-"+c).parentElement.MaterialRadio.check()
+      aconfig.angles = c
+    }
     input.value = getCookie("query")
   }
 

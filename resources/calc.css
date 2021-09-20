@@ -56,3 +56,12 @@
 #help a {
     color: inherit;
 }
+
+.mdl-tooltip {
+  white-space: nowrap;
+  max-width: none;
+}
+
+.mdl-tooltip--right {
+  transform-origin: center left;
+}

@@ -53,55 +53,65 @@
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="#help">Help</a>
     </nav>
-    <div style="margin:20px">
+    <div style="margin:20px;width:120px">
       <h5>Options</h5>
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-BigNumber">
-        <input type="radio" id="option-BigNumber" class="mdl-radio__button" name="options" value="1"
-        onclick='numconfig("BigNumber")'>
-        <span class="mdl-radio__label">BigNumber</span>
-      </label> <br/>
+      <div id="radiobutton-BigNumber">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-BigNumber">
+          <input type="radio" id="option-BigNumber" class="mdl-radio__button" name="options" value="1"
+          onclick='numconfig("BigNumber")'>
+          <span class="mdl-radio__label">BigNumber</span>
+        </label>
+      </div>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-number">
-        <input type="radio" id="option-number" class="mdl-radio__button" name="options" value="2" checked
-        onclick='numconfig("number")'>
-        <span class="mdl-radio__label">Float</span>
-      </label> <br/>
+      <div id="radiobutton-Float">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-number">
+          <input type="radio" id="option-number" class="mdl-radio__button" name="options" value="2" checked
+          onclick='numconfig("number")'>
+          <span class="mdl-radio__label">Float</span>
+        </label>
+      </div>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-Fraction">
-        <input type="radio" id="option-Fraction" class="mdl-radio__button" name="options" value="3"
-        onclick='numconfig("Fraction")'>
-        <span class="mdl-radio__label">Fraction</span>
-      </label> <br/>
-
+      <div id="radiobutton-Fraction">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-Fraction">
+          <input type="radio" id="option-Fraction" class="mdl-radio__button" name="options" value="3"
+          onclick='numconfig("Fraction")'>
+          <span class="mdl-radio__label">Fraction</span>
+        </label>
+      </div>
       <br/>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-deg">
-        <input type="radio" id="option-deg" class="mdl-radio__button" name="aoptions" value="1"
-        onclick='angleconfig("deg");'>
-        <span class="mdl-radio__label">Degrees</span>
-      </label> <br/>
+      <div id="radiobutton-Degrees">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-deg">
+          <input type="radio" id="option-deg" class="mdl-radio__button" name="aoptions" value="1"
+          onclick='angleconfig("deg");'>
+          <span class="mdl-radio__label">Degrees</span>
+        </label>
+      </div>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-rad">
-        <input type="radio" id="option-rad" class="mdl-radio__button" name="aoptions" value="2" checked
-        onclick='angleconfig("rad");'>
-        <span class="mdl-radio__label">Radians</span>
-      </label> <br/>
+      <div id="radiobutton-Radians">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-rad">
+          <input type="radio" id="option-rad" class="mdl-radio__button" name="aoptions" value="2" checked
+          onclick='angleconfig("rad");'>
+          <span class="mdl-radio__label">Radians</span>
+        </label>
+      </div>
 
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-grad">
-        <input type="radio" id="option-grad" class="mdl-radio__button" name="aoptions" value="3"
-        onclick='angleconfig("grad");'>
-        <span class="mdl-radio__label">Gradians</span>
-      </label> <br/>
+      <div id="radiobutton-Gradians">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-grad">
+          <input type="radio" id="option-grad" class="mdl-radio__button" name="aoptions" value="3"
+          onclick='angleconfig("grad");'>
+          <span class="mdl-radio__label">Gradians</span>
+        </label>
+      </div>
       <br/>
+
       <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" id="usecookies">
         <input type="checkbox" class="mdl-checkbox__input" onclick="setusecookies()">
         <span class="mdl-checkbox__label">Use Cookies</span>
       </label>
-      <div class="mdl-tooltip mdl-tooltip--top" for="usecookies">
-        Save these options & the current query in cookies to preserve them when the page is closed.
-      </div>
     </div>
   </div>
+  
   <main class="mdl-layout__content">
     <section class="page-content" id="calc">
       <div class="grid-item"></div>
@@ -113,7 +123,7 @@
       </div>
       <div class="grid-item paren" id="right_paren"></div>
       <div class="grid-item"></div>
-      <div class="grid-item" id="output"></div>
+      <div class="grid-item" id="output"><noscript>Error: Javascript is required to use this calculator.</noscript></div>
       <div class="grid-item"></div>
     </section>
 
@@ -136,6 +146,40 @@
 
   </main>
 </div>
+
+
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="radiobutton-BigNumber">
+  Much higher precision than float.<br/>
+  Doesn't work with units.
+</div>
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="radiobutton-Float">
+  Default. Has occasional rounding errors:<br/>
+  sin(pi) is about 0.0000000000000001
+</div>
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="radiobutton-Fraction">
+  Displays repeating decimal places in parentheses: 1/3 = 0.(3)<br/>
+  Doesn't work with trigonometric functions.
+</div>
+
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="radiobutton-Degrees">
+  Changes trigonometric function inputs:<br/>
+  A full circle is 0 to 360 degrees.
+</div>
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="radiobutton-Radians">
+  Changes trigonometric function inputs:<br/>
+  A full circle is 0 to tau radians.
+</div>
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="radiobutton-Gradians">
+  Changes trigonometric function inputs:<br/>
+  A full circle is 0 to 400 gradians.
+</div>
+
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="usecookies">
+  Save these options and the current<br/>
+  query in cookies to preserve them<br/>
+  when the page is closed.
+</div>
+
 </body>
 
 </html>
