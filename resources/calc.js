@@ -41,13 +41,13 @@ input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) { /* enter key */
     event.preventDefault();
     console.log(input.value);
+    parser.set("ans", output.innerHTML);
     input.select();
     document.execCommand("insertText", false, "");
     input.value = "";
     input.className = "";
     left_paren.innerHTML = "";
     right_paren.innerHTML = "";
-    parser.set("ans", output.innerHTML);
   }
 });
 
