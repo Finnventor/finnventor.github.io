@@ -40,6 +40,9 @@ function calc(x) {
 input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) { /* enter key */
     event.preventDefault();
+    console.log(input.value);
+    input.select();
+    document.execCommand("insertText", false, "");
     input.value = "";
     input.className = "";
     left_paren.innerHTML = "";
