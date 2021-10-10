@@ -1,27 +1,36 @@
 const input = document.getElementById("finnventorcalc");
-input.focus();
 const output = document.getElementById("output");
 const left_paren = document.getElementById("left_paren");
 const right_paren = document.getElementById("right_paren");
 
-var usecookies = false
+var usecookies = false;
 
 function calc(x) {
-  if (/^\s*$/.test(x.value)) {
+  var v = x.value;
+  if (/^\s*$/.test(v)) {
     output.innerHTML = "<br/>";
-    left_paren.innerHTML = ""
-    right_paren.innerHTML =  ""
+    left_paren.innerHTML = "";
+    right_paren.innerHTML =  "";
     input.className = "";
   } else {
-    l = x.value.split("(").length-1;
-    r = x.value.split(")").length-1;
-    left_paren.innerHTML = r-l > 0 ? "(".repeat(r-l) : ""
-    right_paren.innerHTML = l-r > 0 ? ")".repeat(l-r) : ""
+    var i = v.length;
+    var c = 0;
+    for (var j = 0; j < i; j++) {
+      if (v[j] === "(") c++;
+      else if (c > 0 && v[j] === ")") c--;
+    }
+    right_paren.innerHTML = c > 0 ? ")".repeat(c) : "";
+    c = 0;
+    for (;i--;) {
+      if (v[i] === ")") c++;
+      else if (c > 0 && v[i] === "(") c--;
+    }
+    left_paren.innerHTML = c > 0 ? "(".repeat(c) : "";
     try {
-      var out = parser.eval(left_paren.innerHTML+x.value+right_paren.innerHTML).toString();
+      var out = parser.eval(left_paren.innerHTML+v+right_paren.innerHTML).toString();
       if (out.length > 99) {
-        console.debug(out)
-        out = "Function"
+        console.debug(out);
+        out = "Function";
       }
       input.className = "";
       output.innerHTML = out;
@@ -29,9 +38,9 @@ function calc(x) {
       input.className = "error";
       console.debug(e);
       try {
-        output.innerHTML = math.simplify(left_paren.innerHTML+x.value+right_paren.innerHTML).toString();
+        output.innerHTML = math.simplify(left_paren.innerHTML+v+right_paren.innerHTML).toString();
       } catch (e) {
-        console.debug(e)
+        console.debug(e);
       }
     }
   }
@@ -108,6 +117,7 @@ window.onload = function() {
       aconfig.angles = c
     }
     input.value = getCookie("query")
+    input.focus();input.select();
   }
 
   let replacements={};const fns1=['sin','cos','tan','sec','cot','csc'];fns1.forEach(function(name){const fn=math[name];const fnNumber=function(x){switch(aconfig.angles){case'deg':return fn(math.eval(x+'/360*2*pi'));case'grad':return fn(math.eval(x+'/400*2*pi'));default:return fn(x);}};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});const fns2=['asin','acos','atan','atan2','acot','acsc','asec'];fns2.forEach(function(name){const fn=math[name];const fnNumber=function(x){const result=fn(x);if(typeof result==='number'){switch(aconfig.angles){case'deg':return result/2/math.pi*360;case'grad':return result/2/math.pi*400;default:return result;}} return result;};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});math.import(replacements,{override:true});
