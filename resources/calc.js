@@ -5,6 +5,10 @@ const right_paren = document.getElementById("right_paren");
 
 var usecookies = false;
 
+/*math.simplify.rules.push(
+  {l:"c * v ⹀ n", r:"v ⹀ n / c"} //,"v*c1=c2 -> v=c2/c1", "n1+n3=n2+n3 -> n1=n2"
+)*/
+
 function calc(x) {
   var v = x.value;
   if (/^\s*$/.test(v)) {
@@ -27,7 +31,7 @@ function calc(x) {
     }
     left_paren.innerHTML = c > 0 ? "(".repeat(c) : "";
     try {
-      var out = parser.eval(left_paren.innerHTML+v+right_paren.innerHTML).toString();
+      var out = parser.evaluate(left_paren.innerHTML+v+right_paren.innerHTML).toString();
       if (out.length > 99) {
         console.debug(out);
         out = "Function";
@@ -50,13 +54,15 @@ input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) { /* enter key */
     event.preventDefault();
     console.log(input.value);
-    parser.set("ans", output.innerHTML);
+    var o = output.innerHTML;
+    parser.set("ans", o);
     input.select();
     document.execCommand("insertText", false, "");
     input.value = "";
     input.className = "";
     left_paren.innerHTML = "";
     right_paren.innerHTML = "";
+    output.innerHTML = o;
   }
 });
 
@@ -120,7 +126,7 @@ window.onload = function() {
     input.focus();input.select();
   }
 
-  let replacements={};const fns1=['sin','cos','tan','sec','cot','csc'];fns1.forEach(function(name){const fn=math[name];const fnNumber=function(x){switch(aconfig.angles){case'deg':return fn(math.eval(x+'/360*2*pi'));case'grad':return fn(math.eval(x+'/400*2*pi'));default:return fn(x);}};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});const fns2=['asin','acos','atan','atan2','acot','acsc','asec'];fns2.forEach(function(name){const fn=math[name];const fnNumber=function(x){const result=fn(x);if(typeof result==='number'){switch(aconfig.angles){case'deg':return result/2/math.pi*360;case'grad':return result/2/math.pi*400;default:return result;}} return result;};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});math.import(replacements,{override:true});
+  let replacements={};const fns1=['sin','cos','tan','sec','cot','csc'];fns1.forEach(function(name){const fn=math[name];const fnNumber=function(x){switch(aconfig.angles){case'deg':return fn(math.evaluate(x+'/360*2*pi'));case'grad':return fn(math.evaluate(x+'/400*2*pi'));default:return fn(x);}};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});const fns2=['asin','acos','atan','atan2','acot','acsc','asec'];fns2.forEach(function(name){const fn=math[name];const fnNumber=function(x){const result=fn(x);if(typeof result==='number'){switch(aconfig.angles){case'deg':return result/2/math.pi*360;case'grad':return result/2/math.pi*400;default:return result;}} return result;};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});math.import(replacements,{override:true});
 
   if (window.location.search) {
     var query = window.location.search.match(/[?&]q=([^&]+)/)[1]
