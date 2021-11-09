@@ -46,10 +46,17 @@
 
 .paren {
   padding: 10px 5px;
+}
+
+.paren:not(:empty) {
+  cursor: pointer;
+}
+
+.align-left {
   text-align: left;
 }
 
-#left_paren {
+.align-right {
   text-align: right;
 }
 
