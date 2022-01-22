@@ -1,0 +1,129 @@
+.page-content {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 50px 1fr 50px;
+  align-content: stretch;
+  align-items: center;
+}
+
+.lewis_container {
+  font-family: monospace, monospace;
+  display: grid;
+  grid-template-columns: 1fr fit-content(50%) 1fr;
+  align-content: stretch;
+  align-items: center;
+}
+
+p {
+  text-align: center;
+}
+
+button {
+  border: 2px solid #ddd;
+  border-radius: 99px;
+  background-color: #ddd;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+button:hover {
+  border-color: #666;
+  background-color: #ccc;
+}
+
+.button_group {
+  border: 2px solid #ddd;
+  border-radius: 99px;
+  background-color: #ddd;
+  padding: 1px 0;
+}
+
+.button_group button {
+  display: inline-block;
+  border-radius: 0;
+  margin: 0 -3px;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 2px 2px;
+}
+
+.button_group button:first-child {
+  border-radius: 99px 0 0 99px;
+  margin-left: -2px;
+  padding-left: 4px;
+}
+
+.button_group button:last-child {
+  border-radius: 0 99px 99px 0;
+  margin-right: -2px;
+  padding-right: 4px;
+}
+
+.button_group button:hover {
+  border-color: #666;
+}
+
+#molecule_div button {
+  font-size: 14pt;
+}
+
+#finnventormolecule {
+  font-size: 14pt;
+  outline-style: none;
+  box-shadow: none;
+  border-radius: 8px;
+  background-color: #ddd;
+  border: 2px solid #ddd;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  resize: none;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+#finnventormolecule:hover {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+#molecule_charge {
+  text-align: right;
+  font-size: 14pt;
+}
+
+#molecule_charge.positive {
+  color: #f33;
+}
+
+#molecule_charge.negative {
+  color: #33f;
+}
+
+.calc_table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.calc_table, .calc_table th, .calc_table td {
+  background-color: #e6e6e6;
+  border: 1px solid #fff;
+}
+
+.calc_table td {
+  text-align: right;
+}
+
+#bond_table th, #bond_table td {
+  transition: background-color 0.3s;
+}
+
+tr.empty th, tr.empty td {
+  background-color: #f0f0f0;
+}
+
+tr.error th, tr.error td {
+  animation: error_appear 0.3s ease-in forwards;
+}
+
+@keyframes error_appear {
+  to { background-color: #faa; }
+}
