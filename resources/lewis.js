@@ -10,7 +10,7 @@ function size_textarea(t) {
   for (var i of t.value.split("\n")) {
     if (i.length > w) w = i.length;
   }
-  t.style.width = 10.7*w + 25 + 'px';
+  t.style.width = w + 3 + 'ch';
   t.style.height = 0;
   t.style.height = t.scrollHeight+'px';
 }
