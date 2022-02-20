@@ -53,6 +53,10 @@ function calc(x) {
 input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) { /* enter key */
     event.preventDefault();
+    if (input.value === "lewis") {
+      window.location.href="lewis/";
+      return;
+    }
     console.log(input.value);
     var o = output.innerHTML;
     parser.set("ans", o);
@@ -70,13 +74,10 @@ var nconfig = {}
 
 function numconfig(number) {
   nconfig = {number: number};
-
   if (number === "BigNumber") nconfig["precision"] = 35;
-
   math.config(nconfig);
   calc(input);
-
-  if (usecookies) setCookie("numbertype", number, 999)
+  if (usecookies) setCookie("numbertype", number, 999);
 }
 
 const aconfig = {
@@ -86,8 +87,7 @@ const aconfig = {
 function angleconfig(angles) {
   aconfig.angles = angles;
   calc(input);
-
-  if (usecookies) setCookie("angletype", angles, 999)
+  if (usecookies) setCookie("angletype", angles, 999);
 }
 
 function setusecookies() {
@@ -107,8 +107,17 @@ function setusecookies() {
 
 document.querySelectorAll('#help a:not([href])').forEach(function(i) {i.href = "?q=" + encodeURI(i.innerHTML)})
 
+function setconstants(parser) {
+  parser.evaluate('c=299792458m/s');
+  parser.evaluate('k=1.380649e-23J/K');
+  parser.evaluate('NA=6.02214076e23/mol');
+  parser.evaluate('q=1.602176634e19C');
+  parser.set('lewis', '<a href="lewis/">Lewis Dot calculator</a>');
+}
+
 window.onload = function() {
   parser = math.parser();
+  setconstants(parser);
   numconfig("number");
 
   if (getCookie("usecookies") === "true") {
