@@ -112,6 +112,11 @@ function setconstants(parser) {
   parser.evaluate('k=1.380649e-23J/K');
   parser.evaluate('NA=6.02214076e23/mol');
   parser.evaluate('q=1.602176634e19C');
+  parser.evaluate('h=6.62607015e-34J/Hz');
+  parser.evaluate('hbar=1.054571817J*s');
+  parser.evaluate('lorentz(v)=1/sqrt(1-v^2/c^2)');
+  parser.evaluate('alorentz(l)=1/(1-sqrt(l*c))^2');
+
   parser.set('lewis', '<a href="lewis/">Lewis Dot calculator</a>');
 }
 
