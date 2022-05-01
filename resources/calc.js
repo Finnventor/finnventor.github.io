@@ -10,7 +10,7 @@ var usecookies = false;
 )*/
 
 function calc(x) {
-  var v = x.value;
+  var v = x.value.replace(/×|·|⋅|✕|✖|⨉|⨯/, '*').replace(/÷|∕|➗|⟌/, '/');
   if (/^\s*$/.test(v)) {
     output.innerHTML = "<br/>";
     left_paren.innerHTML = "";
@@ -37,16 +37,17 @@ function calc(x) {
         out = "Function";
       }
       input.className = "";
-      output.innerHTML = out;
     } catch (e) {
       input.className = "error";
       console.debug(e);
       try {
-        output.innerHTML = math.simplify(left_paren.innerHTML+v+right_paren.innerHTML).toString();
+        out = math.simplify(left_paren.innerHTML+v+right_paren.innerHTML).toString();
       } catch (e) {
         console.debug(e);
+        return;
       }
     }
+    output.innerHTML = out.replace(/\*/, '×');
   }
 }
 
