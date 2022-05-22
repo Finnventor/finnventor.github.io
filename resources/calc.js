@@ -47,7 +47,7 @@ function calc(x) {
         return;
       }
     }
-    output.innerHTML = out.replace(/\*/, '×');
+    output.innerHTML = out.replace(/\*/g, '×');
   }
 }
 
