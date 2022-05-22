@@ -10,7 +10,7 @@ var usecookies = false;
 )*/
 
 function calc(x) {
-  var v = x.value.replace(/˖|ᐩ|⁺|₊|➕/, '+').replace(/−|➖|⁻|₋|‐|‑|‒|–|—/, '-').replace(/×|·|⋅|✕|✖|⨉|⨯/, '*').replace(/÷|∕|➗|⟌/, '/');
+  var v = x.value.replace(/˖|ᐩ|⁺|₊|➕/g, '+').replace(/−|➖|⁻|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/');
   if (/^\s*$/.test(v)) {
     output.innerHTML = "<br/>";
     left_paren.innerHTML = "";
