@@ -112,7 +112,7 @@ function setconstants(parser) {
   parser.evaluate('c=299792458m/s');
   parser.evaluate('k=1.380649e-23J/K');
   parser.evaluate('NA=6.02214076e23/mol');
-  parser.evaluate('q=1.602176634e19C');
+  parser.evaluate('q=1.602176634e-19C');
   parser.evaluate('h=6.62607015e-34J/Hz');
   parser.evaluate('hbar=1.054571817e-34J*s');
   parser.evaluate('lorentz(v)=1/sqrt(1-v^2/c^2)');
