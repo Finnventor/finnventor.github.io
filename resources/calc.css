@@ -60,6 +60,10 @@
   text-align: right;
 }
 
+#help {
+  margin: 50px;
+}
+
 #help a {
     color: inherit;
 }
