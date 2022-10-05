@@ -120,11 +120,11 @@
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
-      <div class="grid-item align-right"><span class="paren" id="left_paren" onclick="input.focus();input.setSelectionRange(0,0);document.execCommand('insertText', false, this.innerHTML)"></span></div>
+      <div class="grid-item align-right"><span class="paren" id="left_paren" onclick="input.focus();input.setSelectionRange(0,0);document.execCommand('insertText',false,this.innerHTML);input.setSelectionRange(0,0);"></span></div>
       <div class="grid-item" style="min-width: 150px">
         <input type="text" id="finnventorcalc" oninput="calc(this)" size="50">
       </div>
-      <div class="grid-item align-left"><span class="paren" id="right_paren" onclick="input.focus();input.setSelectionRange(999,999);document.execCommand('insertText', false, this.innerHTML)"></span></div>
+      <div class="grid-item align-left"><span class="paren" id="right_paren" onclick="input.focus();input.setSelectionRange(9999,9999);document.execCommand('insertText',false,this.innerHTML)"></span></div>
       <div class="grid-item"></div>
       <div class="grid-item" id="output"><noscript>Error: Javascript is required to use this calculator.</noscript></div>
       <div class="grid-item"></div>
