@@ -39,11 +39,11 @@ h4 {
 }
 
 .mdl-navigation__link {
-  color: inherit;
+  color: inherit !important;
 }
 
 .mdl-layout__drawer-button {
-  color: inherit;
+  color: inherit !important;
 }
 
 @media (prefers-color-scheme: dark) {
