@@ -38,6 +38,14 @@ h4 {
   margin-top: -20px;
 }
 
+.mdl-navigation__link {
+  color: inherit;
+}
+
+.mdl-layout__drawer-button {
+  color: inherit;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #222;
@@ -51,5 +59,8 @@ h4 {
   }
   .mdl-card__supporting-text {
     color: #fff;
+  }
+  .mdl-layout__header {
+    color: #000;
   }
 }
