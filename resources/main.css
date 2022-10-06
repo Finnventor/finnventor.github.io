@@ -37,3 +37,19 @@ h4 {
   height: 20px;
   margin-top: -20px;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #222;
+    color: #fff;
+  }
+  .mdl-layout__header {
+    background-color: #ff5722 !important;
+  }
+  .mdl-card {
+    background-color: #444;
+  }
+  .mdl-card__supporting-text {
+    color: #fff;
+  }
+}
