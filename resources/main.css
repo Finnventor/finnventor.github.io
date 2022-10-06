@@ -54,7 +54,7 @@ h4 {
   .mdl-layout__header {
     background-color: #ff5722 !important;
   }
-  .mdl-card {
+  .card, .mdl-card {
     background-color: #444;
   }
   .mdl-card__supporting-text {
