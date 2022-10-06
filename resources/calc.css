@@ -77,3 +77,14 @@
 .mdl-tooltip--right {
   transform-origin: center left;
 }
+
+@media (prefers-color-scheme: dark) {
+  #finnventorcalc {
+    background-color: #444;
+    border-color: #444;
+  }
+  #finnventorcalc:hover {
+    background-color: #666;
+    border-color: #666;
+  }
+}
