@@ -82,9 +82,13 @@
   #finnventorcalc {
     background-color: #444;
     border-color: #444;
+    color: #fff;
   }
   #finnventorcalc:hover {
     background-color: #666;
     border-color: #666;
+  }
+  #finnventorcalc.error {
+    border-color: #f00;
   }
 }
