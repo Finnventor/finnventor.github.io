@@ -3,10 +3,11 @@ const output = document.getElementById("output");
 const left_paren = document.getElementById("left_paren");
 const right_paren = document.getElementById("right_paren");
 
+var urlquery = ''
 if (window.location.search) {
-  var query = window.location.search.match(/[?&]q=([^&]+)/)[1]
-  if (query) {
-    input.value = decodeURI(query)
+  var match = window.location.search.match(/[?&]q=([^&]+)/)[1]
+  if (match) {
+    input.value = urlquery = decodeURI(match)
   }
 }
 
@@ -157,9 +158,9 @@ window.onload = function() {
 
   calc(input)
 
-  window.onbeforeunload = function() {
-    if (input.value && document.getElementById("usecookies").children[0].checked) {
+  document.addEventListener('visibilitychange', function() {
+    if (input.value && input.value != urlquery && document.getElementById("usecookies").children[0].checked) {
       setCookie("query", input.value, 99)
     }
-  }
+  })
 };
