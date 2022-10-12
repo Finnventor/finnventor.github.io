@@ -66,8 +66,8 @@ input.addEventListener("keyup", function(event) {
       window.location.href="lewis/";
       return;
     }
-    console.log(input.value);
     var o = output.innerHTML;
+    console.log(input.value, ' = ', o);
     parser.set("ans", o);
     input.select();
     document.execCommand("insertText", false, "");
