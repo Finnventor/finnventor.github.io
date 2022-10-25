@@ -126,6 +126,7 @@ function setconstants(parser) {
   parser.evaluate('hbar=1.054571817e-34J*s');
   parser.evaluate('e_0=8.8541878128e-12F/m');
   parser.evaluate('mu_0=1.25663706212e-6N/A^2');
+  parser.evaluate('k_e=8.9875517923e9N*m^2/C^2');
   parser.evaluate('lorentz(v)=1/sqrt(1-v^2/c^2)');
   parser.evaluate('alorentz(a)=sqrt(1-1/a^2)c');
 
