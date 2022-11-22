@@ -46,6 +46,11 @@ h4 {
   color: inherit !important;
 }
 
+::selection {
+  background-color: #ff5722;
+  color: #fff;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #222;
