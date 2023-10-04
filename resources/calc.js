@@ -18,7 +18,7 @@ var usecookies = false;
 )*/
 
 function calc(x) {
-  var v = x.value.replace(/˖|ᐩ|⁺|₊|➕/g, '+').replace(/−|➖|⁻|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace('°', ' deg');
+  var v = x.value.replace(/˖|ᐩ|⁺|₊|➕/g, '+').replace(/−|➖|⁻|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace('°', ' deg');
   if (/^\s*$/.test(v)) {
     output.innerHTML = "<br/>";
     left_paren.innerHTML = "";
@@ -55,7 +55,7 @@ function calc(x) {
         return;
       }
     }
-    output.innerHTML = out.replace('*', '×').replace(' degC', '°C').replace(' degF', '°F');
+    output.innerHTML = out.replace(/\*/g, '×').replace(/ degC/g, '°C').replace(/ degF/g, '°F');
   }
 }
 
