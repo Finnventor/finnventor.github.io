@@ -55,7 +55,7 @@ function calc(x) {
         return;
       }
     }
-    output.innerHTML = out.replace(/\*/g, '×').replace(/ degC/g, '°C').replace(/ degF/g, '°F');
+    output.innerHTML = out.replace(/\*/g, '×').replace(/ degC/g, ' °C').replace(/ degF/g, ' °F');
   }
 }
 
