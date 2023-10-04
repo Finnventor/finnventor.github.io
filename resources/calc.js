@@ -18,7 +18,7 @@ var usecookies = false;
 )*/
 
 function calc(x) {
-  var v = x.value.replace(/˖|ᐩ|⁺|₊|➕/g, '+').replace(/−|➖|⁻|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/');
+  var v = x.value.replace(/˖|ᐩ|⁺|₊|➕/g, '+').replace(/−|➖|⁻|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace('°', ' deg');
   if (/^\s*$/.test(v)) {
     output.innerHTML = "<br/>";
     left_paren.innerHTML = "";
