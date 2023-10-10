@@ -48,7 +48,6 @@ function molcalc(inp) {
           n_bond_electrons += n * i.children[1].innerHTML;
           i.className = "";
         } else {
-          i.children[2].innerHTML = 0;
           i.className = "empty";
         }
       }
