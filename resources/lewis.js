@@ -6,7 +6,7 @@ var molecule_charge = document.getElementById("molecule_charge");
 
 
 function size_textarea(t) {
-  var w = 0;
+  var w = 2;
   for (var i of t.value.split("\n")) {
     if (i.length > w) w = i.length;
   }
