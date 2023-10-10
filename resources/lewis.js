@@ -39,7 +39,7 @@ function molcalc(inp) {
   }
   var n_bond_electrons = 0;
   for (var i of bond_table.children[0].children) {
-    if (i.children[2].nodeName == "TD") {
+    if (i.children[1].nodeName == "TD") {
       if (i.children[0].innerHTML == "Total") {
         i.children[1].innerHTML = n_bond_electrons;
       } else {
@@ -48,6 +48,7 @@ function molcalc(inp) {
           n_bond_electrons += n * i.children[1].innerHTML;
           i.className = "";
         } else {
+          i.children[2].innerHTML = 0;
           i.className = "empty";
         }
       }
