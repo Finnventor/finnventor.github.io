@@ -10,7 +10,7 @@ function size_textarea(t) {
   for (var i of t.value.split("\n")) {
     if (i.length > w) w = i.length;
   }
-  t.style.width = w + 3 + 'ch';
+  t.style.width = w + 2.5 + 'ch';
   t.style.height = 0;
   t.style.height = t.scrollHeight+'px';
 }
@@ -24,9 +24,7 @@ function molcalc(inp) {
     m.set(i, 1 + (m.get(i) || 0));
   }
   var n_electrons = 0;
-  var n_elements = 0;
   for (var [k, v] of m) {
-    n_elements += v;
     var n = element_dict[k];
     text += "<tr"
     if (n) n_electrons += v*n;
@@ -40,16 +38,13 @@ function molcalc(inp) {
     m[i] = 1 + (m[i] || 0);
   }
   var n_bond_electrons = 0;
-  var n_bonds = 0;
   for (var i of bond_table.children[0].children) {
     if (i.children[2].nodeName == "TD") {
       if (i.children[0].innerHTML == "Total") {
         i.children[1].innerHTML = n_bond_electrons;
-        i.children[2].innerHTML = n_bonds;
       } else {
         var n = m[i.children[0].innerHTML];
         if (n) {
-          n_bonds += i.children[2].innerHTML = n;
           n_bond_electrons += n * i.children[1].innerHTML;
           i.className = "";
         } else {
