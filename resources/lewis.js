@@ -31,7 +31,7 @@ function molcalc(inp) {
     else text += ' class="error"'
     text += "><th>"+k+"</th><td>"+(n || "?")+"</td><td>"+v+"</td></tr>";
   }
-  element_table.innerHTML = text + "<tr><th>Total</th><td>"+n_electrons+"</td><td>"+n_elements+"</td></tr>"
+  element_table.innerHTML = text + "<tr><th>Total</th><td colspan=2>"+n_electrons+"</td></tr>"
 
   var m = {}
   for (var i of inp.value) {
