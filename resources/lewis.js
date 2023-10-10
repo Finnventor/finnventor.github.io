@@ -45,6 +45,7 @@ function molcalc(inp) {
       } else {
         var n = m[i.children[0].innerHTML];
         if (n) {
+          i.children[2].innerHTML = n;
           n_bond_electrons += n * i.children[1].innerHTML;
           i.className = "";
         } else {
