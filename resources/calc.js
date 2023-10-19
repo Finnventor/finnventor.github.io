@@ -16,9 +16,14 @@ var usecookies = false;
 /*math.simplify.rules.push(
   {l:"c * v ⹀ n", r:"v ⹀ n / c"} //,"v*c1=c2 -> v=c2/c1", "n1+n3=n2+n3 -> n1=n2"
 )*/
+var superscript = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁺':'+','⁻':'-'};
+
+function unsuperscript(text) {
+  return '^('+text.split('').map(i=>superscript[i]).join('')+')';
+}
 
 function calc(x) {
-  var v = x.value.replace(/˖|ᐩ|⁺|₊|➕/g, '+').replace(/−|➖|⁻|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|•|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace(/°/g, ' deg');
+  var v = x.value.replace(/˖|ᐩ|₊|➕/g, '+').replace(/−|➖|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|•|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace(/°/g, ' deg').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+/g, unsuperscript);
   if (/^\s*$/.test(v)) {
     output.innerHTML = "<br/>";
     left_paren.innerHTML = "";
