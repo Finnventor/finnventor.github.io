@@ -47,7 +47,7 @@
 
 
 .error {
-  color: #faa;
+  color: #e00;
 }
 
 .error[title] {
@@ -62,7 +62,7 @@
 @keyframes error_appear {
   0% {}
   50% {}
-  100% {color: #faa;}
+  100% {color: #e00;}
 }
 
 .paren {
