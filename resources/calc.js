@@ -110,6 +110,8 @@ function lparen(span, n) {
   input.focus();
   input.setSelectionRange(i, i);
   document.execCommand('insertText', false, span.innerHTML.trim());
+  var i = nthIndex(input.value, "\n", n)+1;
+  input.setSelectionRange(i, i);
 }
 
 function rparen(span, n) {
