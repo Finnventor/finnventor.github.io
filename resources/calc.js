@@ -91,7 +91,7 @@ function numconfig(number) {
   if (number === "BigNumber") nconfig["precision"] = 35;
   math.config(nconfig);
   calc(input);
-  if (usecookies) setCookie("numbertype", number, 999);
+  if (usecookies) localStorage.setItem("numbertype", number);
 }
 
 const aconfig = {
@@ -101,21 +101,18 @@ const aconfig = {
 function angleconfig(angles) {
   aconfig.angles = angles;
   calc(input);
-  if (usecookies) setCookie("angletype", angles, 999);
+  if (usecookies) localStorage.setItem("angletype", angles);
 }
 
 function setusecookies() {
   usecookies = document.getElementById("usecookies").children[0].checked;
   console.debug("usecookies: %s", usecookies)
   if (usecookies) {
-    setCookie("usecookies", "true", 999);
-    setCookie("numbertype", nconfig.number, 999);
-    setCookie("angletype", aconfig.angles, 999)
+    localStorage.setItem("usecookies", "true");
+    localStorage.setItem("numbertype", nconfig.number);
+    localStorage.setItem("angletype", aconfig.angles)
   } else {
-    delCookie("usecookies");
-    delCookie("numbertype");
-    delCookie("angletype");
-    delCookie("query");
+    localStorage.clear()
   }
 }
 
@@ -143,19 +140,19 @@ window.onload = function() {
   setconstants(parser);
   numconfig("number");
 
-  if (getCookie("usecookies") === "true") {
+  if (localStorage.getItem("usecookies") === "true") {
     document.getElementById("usecookies").MaterialCheckbox.check();
     usecookies = true;
 
-    var c = getCookie("numbertype")
+    var c = localStorage.getItem("numbertype")
     if (c) document.getElementById("option-"+c).parentElement.MaterialRadio.check()
-    var c = getCookie("angletype")
+    var c = localStorage.getItem("angletype")
     if (c) {
       document.getElementById("option-"+c).parentElement.MaterialRadio.check()
       aconfig.angles = c
     }
     if (!input.value) {
-      input.value = getCookie("query")
+      input.value = localStorage.getItem("query")
       input.focus();input.select();
     }
   }
@@ -166,7 +163,7 @@ window.onload = function() {
 
   document.addEventListener('visibilitychange', function() {
     if (input.value && input.value != urlquery && document.getElementById("usecookies").children[0].checked) {
-      setCookie("query", input.value, 99)
+      localStorage.setItem("query", input.value)
     }
   })
 };
