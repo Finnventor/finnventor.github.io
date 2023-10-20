@@ -18,13 +18,14 @@
 
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script defer src="https://unpkg.com/mathjs@9.5.1/lib/browser/math.js"></script>
-  <script defer src="/resources/calc.js"></script>
+  <script defer src="/resources/main.js"></script>
+  <script defer src="/resources/calc_single.js"></script>
 
   <link rel="canonical" href="https://finnventor.github.io/calc/">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css">
   <link rel="stylesheet" href="/resources/main.css">
-  <link rel="stylesheet" href="/resources/calc.css">
+  <link rel="stylesheet" href="/resources/calc_single.css">
 </head>
 
 <body>
@@ -36,7 +37,7 @@
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="/">Home</a>
         <a class="mdl-navigation__link" href="/python/">Python</a>
-        <a class="mdl-navigation__link" href="?#calc">Calculator</a>
+        <a class="mdl-navigation__link" href="#calc">Calculator</a>
         <a class="mdl-navigation__link" href="/calc/lewis/">Lewis Dot</a>
       </nav>
     </div>
@@ -119,16 +120,18 @@
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
-      <div class="grid-item align-right"><pre id="left_paren"></pre></div>
-      <textarea class="grid-item" id="finnventorcalc" oninput="calc(this)" placeholder="Type an expression..."></textarea>
-      <div class="grid-item align-left"><pre id="right_paren"></pre></div>
+      <div class="grid-item align-right"><span class="paren" id="left_paren" onclick="input.focus();input.setSelectionRange(0,0);document.execCommand('insertText',false,this.innerHTML);input.setSelectionRange(0,0);"></span></div>
+      <div class="grid-item" style="min-width: 150px">
+        <input type="text" id="finnventorcalc" oninput="calc(this)" size="50">
+      </div>
+      <div class="grid-item align-left"><span class="paren" id="right_paren" onclick="input.focus();input.setSelectionRange(9999,9999);document.execCommand('insertText',false,this.innerHTML)"></span></div>
       <div class="grid-item"></div>
-      <div class="grid-item"><noscript>Error: Javascript is required to use this calculator.</noscript></div>
+      <div class="grid-item" id="output"><noscript>Error: Javascript is required to use this calculator.</noscript></div>
       <div class="grid-item"></div>
     </section>
 
     <section class="page-content" id="help">
-      <h2 class="mdl-color-text--deep-orange">Help</h2>Type any mathematical expressions in the box and the results will be calculated and displayed along the side. You can define functions and variables which can be used in the expression below them.<br><br><h4 class="mdl-color-text--deep-orange">Examples</h4><a>2 + 2</a><br>4<br><br><a>sin(0.5pi)</a><br>1<br><br><a>10 A * 30 V * 1 day in kWh</a><br>7.2 kWh<br><br><a>x = sqrt(-18/2)</a><br>3i<br><br><a href="?q=x%20=%20sqrt(-18/2)%0A5x%20+%204">5x + 4</a><br>4 + 15i<br><br>
+      <h2 class="mdl-color-text--deep-orange">Help</h2>To use the calculator, simply type in the box provided. No need to press enter, answers will be displayed automatically below the input field. If the input field is underlined in red, the calculator can't understand your query. Try a simpler one.<h4 class="mdl-color-text--deep-orange">Examples</h4><a>2 + 2</a><br>4<br><br><a>sin(0.5pi)</a><br>1<br><br><a>10 A * 30 V * 1 day in kWh</a><br>7.2 kWh<br><br><a>x = sqrt(-18/2)</a><br>3i<br><br><a href="?q=x%20=%20sqrt(-18/2);%205x%20+%204">5x + 4</a><br>4 + 15i<br><br><h4 class="mdl-color-text--deep-orange">Tips</h4> When enter is pressed, the field is cleared but the answer remains. It can also be accessed using the variable <b>ans</b>. Note that if <b>x&nbsp;=&nbsp;10</b> is in the input field and the field is cleared using backspace instead of enter, the calculator will see <b>x&nbsp;=&nbsp;10</b> and then <b>x&nbsp;=&nbsp;1</b>, resulting in the variable being set as 1 instead of 10.
     </section>
 
     <footer class="mdl-mini-footer">

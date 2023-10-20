@@ -1,4 +1,5 @@
 const input = document.getElementById("finnventorcalc");
+const output = document.getElementById("output");
 const left_paren = document.getElementById("left_paren");
 const right_paren = document.getElementById("right_paren");
 
@@ -15,8 +16,6 @@ var usecookies = false;
 /*math.simplify.rules.push(
   {l:"c * v ⹀ n", r:"v ⹀ n / c"} //,"v*c1=c2 -> v=c2/c1", "n1+n3=n2+n3 -> n1=n2"
 )*/
-
-
 var superscript = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁺':'+','⁻':'-'};
 
 function unsuperscript(text) {
@@ -24,111 +23,49 @@ function unsuperscript(text) {
 }
 
 function calc(x) {
-  var w = 2;
-  for (var i of x.value.split("\n")) {
-    if (i.length > w) w = i.length;
-  }
-  x.style.minWidth = Math.max(30, w + 2.5) + 'ch';
-  x.style.height = 0;
-  x.style.height = x.scrollHeight+5+'px';
-  
-  var text = x.value.replace(/˖|ᐩ|₊|➕/g, '+').replace(/−|➖|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|•|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace(/°/g, ' deg').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+/g, unsuperscript);
-  /*if (/^\s*$/.test(v)) {
+  var v = x.value.replace(/˖|ᐩ|₊|➕/g, '+').replace(/−|➖|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|•|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace(/°/g, ' deg').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+/g, unsuperscript);
+  if (/^\s*$/.test(v)) {
     output.innerHTML = "<br/>";
     left_paren.innerHTML = "";
     right_paren.innerHTML =  "";
     input.className = "";
-  } else*/
-  var lparen_all = "";
-  var out_all = "";
-  var line_n = 0;
-  for (var v of text.split('\n')) {
-    if (/^\s*$/.test(v)) {
-      out_all += "\n"
-      lparen_all += "\n";
-    } else {
+  } else {
     var i = v.length;
     var c = 0;
     for (var j = 0; j < i; j++) {
       if (v[j] === "(") c++;
       else if (c > 0 && v[j] === ")") c--;
     }
-    var rparen = " ";
-    if (c > 0) {
-      rparen = ")".repeat(c);
-      v += rparen;
-      rparen = '<span class="paren" onclick="rparen(this, '+line_n+')">'+rparen+' </span>';
-    }
+    right_paren.innerHTML = c > 0 ? ")".repeat(c) : "";
     c = 0;
     for (;i--;) {
       if (v[i] === ")") c++;
       else if (c > 0 && v[i] === "(") c--;
     }
-    var lparen = "";
-    if (c > 0) {
-      lparen = "(".repeat(c);
-      v = lparen + v;
-      lparen = '<span class="paren" onclick="lparen(this, '+line_n+')"> '+lparen+'</span>';
-    }
-    lparen_all += lparen + "\n";
-    var out = ''
+    left_paren.innerHTML = c > 0 ? "(".repeat(c) : "";
     try {
-      var out = parser.evaluate(v).toString();
+      var out = parser.evaluate(left_paren.innerHTML+v+right_paren.innerHTML).toString();
       if (out.length > 99) {
         console.debug(out);
-        out = "  Function";
-      } else {
-        parser.set("ans", out);
-        out = "= " + out;
+        out = "Function";
       }
+      input.className = "";
     } catch (e) {
+      input.className = "error";
       console.debug(e);
       try {
-        out = '<span class="error" title="'+e+'">= '+math.simplify(v).toString()+'</span>';
+        out = math.simplify(left_paren.innerHTML+v+right_paren.innerHTML).toString();
       } catch (e) {
-        out = '<span class="error">'+e+'</span>';
-        console.debug(v);
         console.debug(e);
+        return;
       }
     }
-    out_all += rparen + out + "\n";
-    }
-    line_n++;
+    output.innerHTML = out.replace(/\*/g, '×').replace(/ degC/g, ' °C').replace(/ degF/g, ' °F');
   }
-  left_paren.innerHTML = lparen_all;
-  right_paren.innerHTML = out_all.replace(/\*/g, '×').replace(/ degC/g, ' °C').replace(/ degF/g, ' °F');
-  //output.innerHTML = 
 }
 
-
-function nthIndex(str, pat, n){
-  var L = str.length;
-  var i = -1;
-  while(n-- && i++<L) {
-    i = str.indexOf(pat, i);
-    if (i < 0) break;
-  }
-  return i;
-}
-
-
-function lparen(span, n) {
-  var i = nthIndex(input.value, "\n", n)+1;
-  input.focus();
-  input.setSelectionRange(i, i);
-  document.execCommand('insertText', false, span.innerHTML.trim());
-}
-
-function rparen(span, n) {
-  var i = nthIndex(input.value, "\n", n+1);
-  input.focus();
-  input.setSelectionRange(i, i);
-  document.execCommand('insertText', false, span.innerHTML.trim());
-}
-
-/*
 input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
+  if (event.keyCode === 13) { /* enter key */
     event.preventDefault();
     if (input.value === "lewis") {
       window.location.href="lewis/";
@@ -145,7 +82,7 @@ input.addEventListener("keyup", function(event) {
     right_paren.innerHTML = "";
     output.innerHTML = o;
   }
-});*/
+});
 
 var nconfig = {}
 

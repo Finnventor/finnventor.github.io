@@ -1,73 +1,55 @@
 #calc {
   display: grid;
   grid-template-columns: 1fr fit-content(50%) 1fr;
-  grid-template-rows: 1fr auto 1fr;
+  grid-template-rows: 1fr 48px 1fr;
   align-content: stretch;
   align-items: center;
 }
 
 .grid-item {
   font-size: 14pt;
-  font-family: monospace, monospace;
-  line-height: 1.6;
   text-align: center;
   vertical-align: middle;
 }
 
 #finnventorcalc {
-  display: block;
-  text-align: left;
-  vertical-align: middle;
-  resize: none;
+  font-size: 14pt;
   outline-style: none;
   box-shadow: none;
-  border-radius: 8px;
-  background-color: #ddd;
-  border: 2px solid #ddd;
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  background-color: #eee;
+  border: 2px solid #eee;
   padding: 10px;
   transition: background-color 0.3s, border 0.3s;
   -webkit-transition: background-color 0.3s, border 0.3s;
+  width: 100%;
   box-sizing: border-box;
-  white-space: pre;
 }
 
 #finnventorcalc:hover {
-  background-color: #d0d0d0;
-  border-color: #d0d0d0;
+  background-color: #e0e0e0;
+  border-color: #e0e0e0;
 }
 
-#finnventorcalc::placeholder {
-  text-align: center;
+#finnventorcalc.error {
+  border: 2px solid #f66;
+  caret-color: #f00;
 }
 
-
-#finnventorcalc:focus::placeholder {
-  color: transparent;
-}
-
-
-.error {
-  color: #faa;
-}
-
-.error[title] {
-  cursor: not-allowed;
-}
-
-.error.fadein {
-  color: transparent;
-  animation: error_appear 2s ease-in forwards;
-}
-
-@keyframes error_appear {
-  0% {}
-  50% {}
-  100% {color: #faa;}
+#output {
+  align-self: start;
+  text-align: left;
+  padding: 11px;
 }
 
 .paren {
+  padding: 10px 5px;
+}
+
+.paren:not(:empty) {
   cursor: pointer;
-  padding: 5px 0;
 }
 
 .align-left {
@@ -106,12 +88,7 @@
     background-color: #666;
     border-color: #666;
   }
-  .error {
-    color: #f66;
-  }
-  @keyframes error_appear {
-    0% {}
-    50% {}
-    100% {color: #f66;}
+  #finnventorcalc.error {
+    border-color: #f00;
   }
 }
