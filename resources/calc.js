@@ -33,12 +33,6 @@ function calc(x) {
   x.style.height = x.scrollHeight+5+'px';
   
   var text = x.value.replace(/˖|ᐩ|₊|➕/g, '+').replace(/−|➖|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|•|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace(/°/g, ' deg').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+/g, unsuperscript);
-  /*if (/^\s*$/.test(v)) {
-    output.innerHTML = "<br/>";
-    left_paren.innerHTML = "";
-    right_paren.innerHTML =  "";
-    input.className = "";
-  } else*/
   var lparen_all = "";
   var out_all = "";
   var line_n = 0;
@@ -97,7 +91,6 @@ function calc(x) {
   }
   left_paren.innerHTML = lparen_all;
   right_paren.innerHTML = out_all.replace(/\*/g, '×').replace(/ degC/g, ' °C').replace(/ degF/g, ' °F');
-  //output.innerHTML = 
 }
 
 
@@ -126,26 +119,6 @@ function rparen(span, n) {
   document.execCommand('insertText', false, span.innerHTML.trim());
 }
 
-/*
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    if (input.value === "lewis") {
-      window.location.href="lewis/";
-      return;
-    }
-    var o = output.innerHTML;
-    console.log(input.value, ' = ', o);
-    parser.set("ans", o);
-    input.select();
-    document.execCommand("insertText", false, "");
-    input.value = "";
-    input.className = "";
-    left_paren.innerHTML = "";
-    right_paren.innerHTML = "";
-    output.innerHTML = o;
-  }
-});*/
 
 var nconfig = {}
 
