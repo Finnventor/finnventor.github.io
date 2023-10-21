@@ -67,12 +67,11 @@ function calc(x) {
     lparen_all += lparen + "\n";
     var out = ''
     try {
-      var out = parser.evaluate(v).toString();
+      var out = parser.evaluate('ans='+v).toString();
       if (out.length > 99) {
-        console.debug(out);
-        out = "  Function";
+        console.debug('function='+out);
+        out = "  function";
       } else {
-        parser.set("ans", out);
         out = "= " + out;
       }
     } catch (e) {
