@@ -89,7 +89,7 @@ function unindent(b) {
 }
 
 function updateURL(inp) {
-  window.history.replaceState(null, '', '?q='+encodeURI(inp.value)); 
+  window.history.replaceState(null, '', inp.value ? '?q='+encodeURI(inp.value) : ''); 
 }
 
 function cyclohexane() {
