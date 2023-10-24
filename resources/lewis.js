@@ -1,9 +1,10 @@
 var mol_inp = document.getElementById("finnventormolecule");
 
 if (window.location.search) {
-  var match = window.location.search.match(/[?&]q=([^&]+)/)[1]
+  var match = window.location.search.match(/[?&]q=([^&]+)/)[1];
   if (match) {
-    mol_inp.value = decodeURI(match)
+    mol_inp.value = decodeURI(match);
+    molcalc(mol_inp);
   }
 }
 
@@ -89,7 +90,7 @@ function unindent(b) {
 }
 
 function updateURL(inp) {
-  window.history.replaceState(null, '', inp.value ? '?q='+encodeURI(inp.value) : ''); 
+  window.history.replaceState(null, '', inp.value ? '?q='+encodeURI(inp.value) : '?'); 
 }
 
 function cyclohexane() {
