@@ -155,6 +155,18 @@ function setusecookies() {
 
 document.querySelectorAll('#help a:not([href])').forEach(function(i) {i.href = "?q=" + encodeURI(i.innerHTML)})
 
+function mass(m) {
+  var sum = 0;
+  for (var e of m.matchAll(/([A-Za-z][a-z]?)([0-9]*)/g)) {
+    var s = ptable_lowercase[e[1].toLowerCase()];
+    if (e[2]) {
+      s *= e[2];
+    }
+    sum += s;
+  }
+  return math.unit(sum, 'g/mol');
+}
+
 function setconstants(parser) {
   parser.evaluate('c=299792458m/s');
   parser.evaluate('k=1.380649e-23J/K');
@@ -168,6 +180,7 @@ function setconstants(parser) {
   parser.evaluate('k_e=8.9875517923e9N*m^2/C^2');
   parser.evaluate('lorentz(v)=1/sqrt(1-v^2/c^2)');
   parser.evaluate('alorentz(a)=sqrt(1-1/a^2)c');
+  math.import({mass: mass}, {override: true});
 
   parser.set('lewis', '<a href="lewis/">Lewis Dot calculator</a>');
 }
@@ -204,3 +217,5 @@ window.onload = function() {
     }
   })
 };
+
+const ptable_lowercase = {h:1.007944,he:4.0026022,li:6.9412,be:9.0121823,b:10.8117,c:12.01078,n:14.00672,o:15.99943,f:18.99840325,ne:20.17976,na:22.989769282,mg:24.30506,al:26.98153868,si:28.08553,p:30.9737622,s:32.0655,cl:35.4532,ar:39.9481,k:39.09831,ca:40.0784,sc:44.9559126,ti:47.8671,v:50.94151,cr:51.99616,mn:54.9380455,fe:55.8452,co:58.9331955,ni:58.69344,cu:63.5463,zn:65.382,ga:69.7231,ge:72.641,as:74.921602,se:78.963,br:79.9041,kr:83.7982,rb:85.46783,sr:87.621,y:88.905852,zr:91.2242,nb:92.906382,mo:95.962,tc:98,ru:101.072,rh:102.905502,pd:106.421,ag:107.86822,cd:112.4118,in:114.8183,sn:118.7107,sb:121.7601,te:127.603,i:126.904473,xe:131.2936,cs:132.90545192,ba:137.3277,la:138.905477,ce:140.1161,pr:140.907652,nd:144.2423,pm:145,sm:150.362,eu:151.9641,gd:157.253,tb:158.925352,dy:162.5001,ho:164.930322,er:167.2593,tm:168.934212,yb:173.0545,lu:174.96681,hf:178.492,ta:180.947882,w:183.841,re:186.2071,os:190.233,ir:192.2173,pt:195.0849,au:196.9665694,hg:200.592,tl:204.38332,pb:207.21,bi:208.980401,po:209,at:210,rn:222,fr:223,ra:226,ac:227,th:232.038062,pa:231.035882,u:238.028913,np:237,pu:244,am:243,cm:247,bk:247,cf:251,es:252,fm:257,md:258,no:259,lr:262,rf:267,db:268,sg:271,bh:272,hs:270,mt:276,ds:281,rg:280,cn:285,nh:284,fl:289,mc:288,lv:293,ts:294,og:294}
