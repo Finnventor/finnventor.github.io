@@ -162,7 +162,7 @@ document.querySelectorAll('#help a:not([href])').forEach(function(i) {i.href = "
 
 function mass(m) {
   var sum = 0;
-  for (var e of unsuperscript(m).matchAll(/([A-Za-z][a-z]?)([0-9]*)/g)) {
+  for (var e of unsubscript(m).matchAll(/([A-Za-z][a-z]?)([0-9]*)/g)) {
     var s = ptable_lowercase[e[1].toLowerCase()];
     if (e[2]) {
       s *= e[2];
