@@ -24,13 +24,9 @@ function unsuperscript(text) {
   return '^('+text.split('').map(i=>superscript[i]).join('')+')';
 }
 
-/*function unsubscript(text) {
-  return text.split('').map(i=>{var n=subscript.indexOf(i) ? n!=-1 : i}).join('');
-}
-
 function unsubscript(text) {
-  return text.split('').map(i=>{n=subscript.indexOf(i);return n ? n!=-1 : i}).join('');
-}*/
+  return text.split('').map(i=>{var n=subscript.indexOf(i);return n!=-1 ? n : i}).join('');
+}
 
 function calc(x) {
   var w = 2;
@@ -166,7 +162,7 @@ document.querySelectorAll('#help a:not([href])').forEach(function(i) {i.href = "
 
 function mass(m) {
   var sum = 0;
-  for (var e of m.matchAll(/([A-Za-z][a-z]?)([0-9]*)/g)) {
+  for (var e of unsuperscript(m).matchAll(/([A-Za-z][a-z]?)([0-9]*)/g)) {
     var s = ptable_lowercase[e[1].toLowerCase()];
     if (e[2]) {
       s *= e[2];
