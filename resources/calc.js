@@ -17,11 +17,20 @@ var usecookies = false;
 )*/
 
 
-var superscript = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁺':'+','⁻':'-'};
+var superscript = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁺':'+','⁻':'-','⁽':'(','⁾':')'};
+var subscript = '₀₁₂₃₄₅₆₇₈₉';
 
 function unsuperscript(text) {
   return '^('+text.split('').map(i=>superscript[i]).join('')+')';
 }
+
+/*function unsubscript(text) {
+  return text.split('').map(i=>{var n=subscript.indexOf(i) ? n!=-1 : i}).join('');
+}
+
+function unsubscript(text) {
+  return text.split('').map(i=>{n=subscript.indexOf(i);return n ? n!=-1 : i}).join('');
+}*/
 
 function calc(x) {
   var w = 2;
@@ -32,7 +41,7 @@ function calc(x) {
   x.style.height = 0;
   x.style.height = x.scrollHeight+5+'px';
   
-  var text = x.value.replace(/˖|ᐩ|₊|➕/g, '+').replace(/−|➖|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|•|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|➗|⟌/g, '/').replace(/°/g, ' deg').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+/g, unsuperscript);
+  var text = x.value.replace(/˖|ᐩ|₊|➕/g, '+').replace(/−|➖|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|•|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|⁄|➗|⟌/g, '/').replace(/°/g, ' deg').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁽⁾]+/g, unsuperscript);
   var lparen_all = "";
   var out_all = "";
   var line_n = 0;
@@ -183,6 +192,10 @@ function setconstants(parser) {
   math.import({mass: mass}, {override: true});
 
   parser.set('lewis', '<a href="lewis/">Lewis Dot calculator</a>');
+}
+
+function makeurl() {
+  return window.location.href.split('?')[0]+'?q='+encodeURI(input.value);
 }
 
 window.onload = function() {
