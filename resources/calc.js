@@ -224,14 +224,16 @@ function makeurl() {
 window.onload = function() {
   parser = math.parser();
   setconstants(parser);
-  numconfig("number");
 
   if (localStorage.getItem("usecookies") === "true") {
     document.getElementById("usecookies").MaterialCheckbox.check();
     usecookies = true;
 
     var c = localStorage.getItem("numbertype")
-    if (c) document.getElementById("option-"+c).parentElement.MaterialRadio.check()
+    if (c) {
+      document.getElementById("option-"+c).parentElement.MaterialRadio.check()
+      numconfig(c)
+    }
     var c = localStorage.getItem("angletype")
     if (c) {
       document.getElementById("option-"+c).parentElement.MaterialRadio.check()
@@ -241,6 +243,8 @@ window.onload = function() {
       input.value = localStorage.getItem("query")
       input.focus();input.select();
     }
+  } else {
+    numconfig("number");
   }
 
   let replacements={};const fns1=['sin','cos','tan','sec','cot','csc'];fns1.forEach(function(name){const fn=math[name];const fnNumber=function(x){switch(aconfig.angles){case'deg':return fn(math.evaluate(x+'/360*2*pi'));case'grad':return fn(math.evaluate(x+'/400*2*pi'));default:return fn(x);}};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});const fns2=['asin','acos','atan','atan2','acot','acsc','asec'];fns2.forEach(function(name){const fn=math[name];const fnNumber=function(x){const result=fn(x);if(typeof result==='number'){switch(aconfig.angles){case'deg':return result/2/math.pi*360;case'grad':return result/2/math.pi*400;default:return result;}} return result;};replacements[name]=math.typed(name,{'number':fnNumber,'BigNumber':fnNumber,'Fraction':fnNumber,'Array | Matrix':function(x){return math.map(x,fnNumber);}});});math.import(replacements,{override:true});
