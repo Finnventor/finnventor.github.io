@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.grid-item {
+.grid-item, #finnventorcalc {
   font-size: 14pt;
   font-family: monospace, monospace;
   line-height: 1.6;
@@ -31,7 +31,7 @@
   white-space: pre;
 }
 
-#finnventorcalc:hover {
+#finnventorcalc:hover, .circle:hover > span {
   background-color: #d0d0d0;
   border-color: #d0d0d0;
 }
@@ -45,13 +45,31 @@
   color: transparent;
 }
 
+#calc_highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 12px;
+  margin: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.highlight {
+  color: #f00;
+}
 
 .error {
   color: #e00;
 }
 
 .error[title] {
-  cursor: not-allowed;
+  cursor: help;
+}
+
+.error.material-icons {
+  vertical-align: middle;
+  margin: -10px 0 -5px -5px;
 }
 
 .error.fadein {
@@ -78,9 +96,45 @@
   text-align: right;
 }
 
+.circle {
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  text-decoration: none;
+  font-size: 14pt;
+  font-family: monospace, monospace;
+  color: #000;
+}
+
+.circleright {
+  left: revert;
+  right: 50px;
+}
+
+.circle > span {
+  text-align: center;
+  transition: background-color 0.3s, border 0.3s;
+  -webkit-transition: background-color 0.3s, border 0.3s;
+  display: inline-block;
+  width: 3ch;
+  height: 3ch;
+  line-height: 3ch;
+  border-radius: 99px;
+  background-color: #ddd;
+  border: 2px solid #ddd;
+}
+
+.circle > span > .material-icons {
+  vertical-align: text-top;
+}
+
 #help {
-  margin: 50px;
+  padding: 0 50px;
   width: 80%;
+}
+
+#help > h2 {
+  padding-top: 50px;
 }
 
 #help a {
@@ -97,21 +151,29 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  .circle > span {
+    background-color: #444;
+    border: 2px solid #444;
+    color: #fff;
+  }
+  .circle {
+    color: #fff;
+  }
   #finnventorcalc {
     background-color: #444;
     border-color: #444;
     color: #fff;
   }
-  #finnventorcalc:hover {
+  #finnventorcalc:hover, .circle:hover > span {
     background-color: #666;
     border-color: #666;
   }
   .error {
-    color: #f66;
+    color: #ff5722;
   }
   @keyframes error_appear {
     0% {}
     50% {}
-    100% {color: #f66;}
+    100% {color: #ff5722;}
   }
 }

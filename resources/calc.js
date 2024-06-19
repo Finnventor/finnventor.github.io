@@ -1,6 +1,8 @@
 const input = document.getElementById("finnventorcalc");
 const left_paren = document.getElementById("left_paren");
 const right_paren = document.getElementById("right_paren");
+const calc_highlight = document.getElementById("calc_highlight");
+const sharebutton = document.getElementById("sharebutton");
 
 var urlquery = ''
 if (window.location.search) {
@@ -40,6 +42,7 @@ function calc(x) {
   var text = x.value.replace(/˖|ᐩ|₊|➕/g, '+').replace(/−|➖|₋|‐|‑|‒|–|—/g, '-').replace(/×|·|⋅|･|•|✕|✖|⨉|⨯/g, '*').replace(/÷|∕|⁄|➗|⟌/g, '/').replace(/°/g, ' deg').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁽⁾]+/g, unsuperscript);
   var lparen_all = "";
   var out_all = "";
+  var hl = "";
   var line_n = 0;
   for (var v of text.split('\n')) {
     if (/^\s*$/.test(v)) {
@@ -69,6 +72,7 @@ function calc(x) {
       v = lparen + v;
       lparen = '<span class="paren" onclick="lparen(this, '+line_n+')"> '+lparen+'</span>';
     }
+    v = v.replace(/mass\(( *[A-Z].*)\)/g, 'mass("$1")')
     lparen_all += lparen + "\n";
     var out = ''
     try {
@@ -81,20 +85,38 @@ function calc(x) {
       }
     } catch (e) {
       console.debug(e);
+      out = '<span class="error material-icons" title="'+e+'">warning</span>';
       try {
-        out = '<span class="error" title="'+e+'">= '+math.simplify(v).toString()+'</span>';
+        //out = '<span class="error" title="'+e+'">= '+math.simplify(v).toString()+'</span>';
+        if (e.message.startsWith("Undefined")) {
+            invalid = e.message.slice(17);
+            out = "= " + math.simplify(v).toString().replace(invalid, '<span class="error" title="'+e+'">'+invalid+'</span>') + "  " + out;
+            //console.log(e);
+        } else {
+            out = "= " + math.simplify(v).toString() + "  " + out;
+        }
       } catch (e) {
-        out = '<span class="error">'+e+'</span>';
+        //out = '<span class="error">'+e+'</span>';
+        //out = '<span class="error" title="'+e+'">⚠</span>';
+        //out = '<span class="error material-icons" title="'+e+'">warning</span>';
+        if (e.char) {
+          hl += ' '.repeat(Math.max(0, e.char-1)) + '<span class="highlight" style="width: '+e.char+'ch">_</span>';
+        } /*else if (e.message.startsWith("Undefined")) {
+          out += " "+e.message
+        }*/
         console.debug(v);
         console.debug(e);
       }
     }
     out_all += rparen + out + "\n";
     }
+    hl += "\n";
     line_n++;
   }
   left_paren.innerHTML = lparen_all;
   right_paren.innerHTML = out_all.replace(/\*/g, '×').replace(/ degC/g, ' °C').replace(/ degF/g, ' °F');
+  calc_highlight.innerHTML = hl;
+  sharebutton.href = window.location.pathname+'?q='+encodeURI(x.value);
 }
 
 
@@ -161,9 +183,14 @@ function setusecookies() {
 document.querySelectorAll('#help a:not([href])').forEach(function(i) {i.href = "?q=" + encodeURI(i.innerHTML)})
 
 function mass(m) {
+  var s;
+  m = unsubscript(m);
+  if (s = m.match(/[^A-Za-z0-9 ]/)) {
+    throw new Error('Undefined symbol ' + s);
+  }
   var sum = 0;
-  for (var e of unsubscript(m).matchAll(/([A-Za-z][a-z]?)([0-9]*)/g)) {
-    var s = ptable_lowercase[e[1].toLowerCase()];
+  for (var e of m.matchAll(/([A-Za-z][a-z]?)([0-9]*)/g)) {
+    s = ptable_lowercase[e[1].toLowerCase()];
     if (e[2]) {
       s *= e[2];
     }

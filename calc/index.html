@@ -36,7 +36,7 @@
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="/">Home</a>
         <a class="mdl-navigation__link" href="/python/">Python</a>
-        <a class="mdl-navigation__link" href="?#calc">Calculator</a>
+        <a class="mdl-navigation__link" href="#calc">Calculator</a>
         <a class="mdl-navigation__link" href="/calc/lewis/">Lewis Dot</a>
       </nav>
     </div>
@@ -115,20 +115,22 @@
   </div>
 
   <main class="mdl-layout__content">
-    <section class="page-content" id="calc">
+    <section class="page-content relativeto" id="calc">
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item align-right"><pre id="left_paren"></pre></div>
-      <textarea class="grid-item" id="finnventorcalc" oninput="calc(this)" placeholder="Type an expression..." style="min-width: 30ch; height: 55px;"></textarea>
+      <div class="grid-item relativeto"><textarea id="finnventorcalc" oninput="calc(this)" placeholder="Type an expression..." style="min-width: 30ch; height: 55px;"></textarea><pre id="calc_highlight"></pre></div>
       <div class="grid-item align-left"><pre id="right_paren"></pre></div>
-      <div class="grid-item"></div>
+      <div class="grid-item"><a class="circle" href="#help"><span>?</span> Help</a></div>
       <div class="grid-item"><noscript>Error: Javascript is required to use this calculator.</noscript></div>
-      <div class="grid-item"></div>
+      <div class="grid-item"><a class="circle circleright" id="sharebutton" title="Copy link to clipboard" onclick="navigator.clipboard.writeText(this.href);return false" href="#calc">Share <span><span class="material-icons">content_copy
+</span></span></a></div>
     </section>
 
-    <section class="page-content" id="help">
-      <h2 class="mdl-color-text--deep-orange">Help</h2>Type any mathematical expressions in the box and the results will be calculated and displayed along the side. You can define functions and variables which can be referenced in the expressions below them. Any unmatched parentheses will be automatically closed on the opposite side (click them to move them inside the textbox).<br>Other options can be found in the menu in the top left.<br><br><h4 class="mdl-color-text--deep-orange">Examples</h4><a>2 + 2</a><br>4<br><br><a>sin(0.5pi)</a><br>1<br><br><a>10 A * 30 V * 1 day in kWh</a><br>7.2 kWh<br><br><a>x = sqrt(-18/2)</a><br>3i<br><br><a href="?q=x%20=%20sqrt(-18/2)%0A5x%20+%204">5x + 4</a><br>4 + 15i<br><br>
+    <section class="page-content relativeto" id="help">
+      <h2 class="mdl-color-text--deep-orange">Help</h2>Type any mathematical expressions in the box and the results will be calculated and displayed along the side. You can define functions and variables which can be referenced in the expressions below them. Any unmatched parentheses will be automatically closed on the opposite side (click them to move them inside the textbox).<br>Other options can be found in the menu in the top left.<br><br><h4 class="mdl-color-text--deep-orange">Examples</h4><pre><a>2 + 2</a><br>4<br><br><a>sin(0.5pi)</a><br>1<br><br><a>10 A * 30 V * 1 day in kWh</a><br>7.2 kWh<br><br><a>x = sqrt(-18/2)</a><br>3i<br><a href="?q=x%20=%20sqrt(-18/2)%0A5x%20+%204">5x + 4</a><br>4 + 15i<br><br><a href="?q=f(x)%20=%20(x-2)*(x-3)%0Af(1)">f(x) = (x-2)*(x-3)<br>f(1)</a><br>2<br><br><a href="?q=0.500%20mol%20*%20mass(NaCl)">0.500 mol * mass(NaCl)</a><br>29.2 g<br><br><br><br><br><br><br></pre>
+      <a class="circle" href="#calc"><span>&lt;</span> Back</a>
     </section>
 
     <footer class="mdl-mini-footer">
