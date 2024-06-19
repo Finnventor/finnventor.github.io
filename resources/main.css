@@ -7,6 +7,11 @@ body {
   width: 100%;
 }
 
+main.mdl-layout__content {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
 section {
   width: 100%;
   min-height: 100%;
