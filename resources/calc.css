@@ -81,7 +81,7 @@
   100% {color: #e00;}
 }
 
-.left_paren, .right_paren {
+#left_paren, #right_paren {
   margin: 0;
 }
 
