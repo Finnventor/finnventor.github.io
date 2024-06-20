@@ -189,7 +189,7 @@ function mass(m) {
     }
     sum += s;
   }
-  return math.unit(sum, 'g/mol');
+  return math.unit(math.round(sum, 4), 'g/mol');
 }
 
 function setconstants(parser) {
