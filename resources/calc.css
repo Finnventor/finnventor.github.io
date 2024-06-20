@@ -81,6 +81,10 @@
   100% {color: #e00;}
 }
 
+.left_paren, .right_paren {
+  margin: 0;
+}
+
 .paren {
   cursor: pointer;
   padding: 5px 0;
