@@ -72,7 +72,7 @@ function calc(x) {
       v = lparen + v;
       lparen = '<span class="paren" onclick="lparen(this, '+line_n+')"> '+lparen+'</span>';
     }
-    v = v.replace(/mass\(( *[A-Z].*)\)/g, 'mass("$1")')
+    v = v.replace(/mass\(( *[A-Z].*?)\)/g, function(_,p){c+=2;return'mass("'+p+'")'})
     lparen_all += lparen + "\n";
     var out = ''
     try {
@@ -87,23 +87,16 @@ function calc(x) {
       console.debug(e);
       out = '<span class="error material-icons" title="'+e+'">warning</span>';
       try {
-        //out = '<span class="error" title="'+e+'">= '+math.simplify(v).toString()+'</span>';
         if (e.message.startsWith("Undefined")) {
             invalid = e.message.slice(17);
             out = "= " + math.simplify(v).toString().replace(invalid, '<span class="error" title="'+e+'">'+invalid+'</span>') + "  " + out;
-            //console.log(e);
         } else {
             out = "= " + math.simplify(v).toString() + "  " + out;
         }
       } catch (e) {
-        //out = '<span class="error">'+e+'</span>';
-        //out = '<span class="error" title="'+e+'">⚠</span>';
-        //out = '<span class="error material-icons" title="'+e+'">warning</span>';
         if (e.char) {
-          hl += ' '.repeat(Math.max(0, e.char-1)) + '<span class="highlight" style="width: '+e.char+'ch">_</span>';
-        } /*else if (e.message.startsWith("Undefined")) {
-          out += " "+e.message
-        }*/
+          hl += ' '.repeat(Math.max(0, e.char-c-1)) + '_';
+        }
         console.debug(v);
         console.debug(e);
       }
