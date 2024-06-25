@@ -45,7 +45,7 @@ function calc(x) {
   var hl = "";
   var line_n = 0;
   for (var v of text.split('\n')) {
-    if (/^\s*$/.test(v)) {
+    if (/^\s*(?:#|$)/.test(v)) {
       out_all += "\n"
       lparen_all += "\n";
     } else {
