@@ -8,7 +8,7 @@ var urlquery = ''
 if (window.location.search) {
   var match = window.location.search.match(/[?&]q=([^&]+)/)[1]
   if (match) {
-    input.value = urlquery = decodeURI(match)
+    input.value = urlquery = decodeURIComponent(match)
   }
 }
 
@@ -109,7 +109,7 @@ function calc(x) {
   left_paren.innerHTML = lparen_all;
   right_paren.innerHTML = out_all.replace(/\*/g, '×').replace(/ degC/g, ' °C').replace(/ degF/g, ' °F');
   calc_highlight.innerHTML = hl;
-  sharebutton.href = window.location.pathname+'?q='+encodeURI(x.value);
+  sharebutton.href = window.location.pathname+'?q='+encodeURIComponent(x.value);
 }
 
 
@@ -173,7 +173,7 @@ function setusecookies() {
   }
 }
 
-document.querySelectorAll('#help a:not([href])').forEach(function(i) {i.href = "?q=" + encodeURI(i.innerHTML)})
+document.querySelectorAll('#help a:not([href])').forEach(function(i) {i.href = "?q=" + encodeURIComponent(i.innerHTML)})
 
 function mass(m) {
   var s;
@@ -208,10 +208,6 @@ function setconstants(parser) {
   math.import({mass: mass}, {override: true});
 
   parser.set('lewis', '<a href="lewis/">Lewis Dot calculator</a>');
-}
-
-function makeurl() {
-  return window.location.href.split('?')[0]+'?q='+encodeURI(input.value);
 }
 
 window.onload = function() {
