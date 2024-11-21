@@ -189,6 +189,9 @@ function mass(m) {
     }
     sum += s;
   }
+  if (nconfig.number === "BigNumber") {
+    sum = math.bignumber(sum);
+  }
   return math.unit(math.round(sum, 4), 'g/mol');
 }
 
