@@ -147,6 +147,8 @@ function numconfig(number) {
   nconfig = {number: number};
   if (number === "BigNumber") nconfig["precision"] = 35;
   math.config(nconfig);
+  parser.clear();
+  setconstants(parser);
   calc(input);
   if (usecookies) localStorage.setItem("numbertype", number);
 }
