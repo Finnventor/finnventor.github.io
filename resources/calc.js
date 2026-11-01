@@ -200,6 +200,7 @@ function mass(m) {
 function setconstants(parser) {
   parser.evaluate('c=299792458m/s');
   parser.evaluate('k=1.380649e-23J/K');
+  parser.evaluate('k_b=k_B=stefanBoltzmann');
   parser.evaluate('NA=6.02214076e23/mol');
   parser.evaluate('R=8.31446261815324J/K/mol');
   parser.evaluate('q=1.602176634e-19C');
@@ -210,8 +211,35 @@ function setconstants(parser) {
   parser.evaluate('k_e=8.9875517923e9N*m^2/C^2');
   parser.evaluate('lorentz(v)=1/sqrt(1-v^2/c^2)');
   parser.evaluate('alorentz(a)=sqrt(1-1/a^2)c');
+  parser.evaluate('wien=2897.771955 um K');
+  parser.evaluate('sun=1361W/m^2');
   math.import({mass: mass}, {override: true});
-
+  math.createUnit('foe', {
+    definition: '1e44 J',
+    prefixes: 'long'
+  });
+  math.createUnit('smoot', {
+    definition: '1.7018 m',
+    prefixes: 'long'
+  });
+  math.createUnit('furlong', {
+    definition: '660 ft',
+    prefixes: 'long'
+  });
+  math.createUnit('mho', {
+    definition: '1 siemens',
+    prefixes: 'long'
+  });
+  math.createUnit('AU', {
+    definition: '1.495978707e11 m',
+    prefixes: 'short'
+  });
+  parser.evaluate('au=AU');
+  math.createUnit('AMU', {
+    definition: '1.66053906892e-27 kg',
+    prefixes: 'long'
+  });
+  parser.evaluate('dalton=AMU');
   parser.set('lewis', '<a href="lewis/">Lewis Dot calculator</a>');
 }
 
