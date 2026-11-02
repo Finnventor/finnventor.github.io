@@ -214,6 +214,13 @@ function setconstants(parser) {
   parser.evaluate('wien=2897.771955 um K');
   parser.evaluate('sun=1361W/m^2');
   math.import({mass: mass}, {override: true});
+  parser.evaluate('au=AU');
+  parser.evaluate('dalton=AMU');
+  parser.set('lewis', '<a href="lewis/">Lewis Dot calculator</a>');
+}
+
+window.onload = function() {
+  parser = math.parser();
   math.createUnit('foe', {
     definition: '1e44 J',
     prefixes: 'long'
@@ -234,17 +241,10 @@ function setconstants(parser) {
     definition: '1.495978707e11 m',
     prefixes: 'short'
   });
-  parser.evaluate('au=AU');
   math.createUnit('AMU', {
     definition: '1.66053906892e-27 kg',
     prefixes: 'long'
   });
-  parser.evaluate('dalton=AMU');
-  parser.set('lewis', '<a href="lewis/">Lewis Dot calculator</a>');
-}
-
-window.onload = function() {
-  parser = math.parser();
   setconstants(parser);
 
   if (localStorage.getItem("usecookies") === "true") {
